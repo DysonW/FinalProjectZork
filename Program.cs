@@ -1,4 +1,94 @@
-﻿//github test
+﻿//Equiping program
+List<string> weaponsInventory = new List<string>();
+string strongSword = "Strong Sword";
+string sword = "Sword";
+
+string equipeds = "Bear Hands";
+weaponsInventory.Add(sword);
+weaponsInventory.Add(strongSword);
+weaponsInventory.Add("Cow Sword");
+Console.WriteLine(weaponsInventory[1]);
+
+
+List<string> itemsInventory = new List<string>();
+string smallPotion = "Small Potion";
+string mediumPotion = "Medium Potion";
+string bigPotion = "Big Potion";
+
+
+string AskQuestion(string question){
+    string answer = "";
+    Console.WriteLine(question);
+    answer = Console.ReadLine();
+    return answer;
+}
+
+void displayWeaponsEquiped(){
+    int count = 1;
+    foreach(string equiped in weaponsInventory){
+        Console.WriteLine($"{count}: {equiped}");
+        count++;
+    }
+}
+
+void displayitemsEquiped(){
+    int count = 1;
+    foreach(string equiped in itemsInventory){
+        Console.WriteLine($"{count}: {equiped}");
+        count++;
+    }
+}
+
+void changeWeaponsEquiped(){
+    bool choosing = true;
+    while(choosing){
+        displayWeaponsEquiped();
+        String choice = AskQuestion("What sword would you like to equip?");
+        string swaptop = equipeds;
+        equipeds = weaponsInventory[int.Parse(choice)-1];
+        weaponsInventory[int.Parse(choice)-1] = swaptop;
+        string done;
+        Console.WriteLine($"You are using the {equipeds} \nAre you ReAdY?");
+        done = Console.ReadLine();
+        if (done == "yes"){
+            choosing = false;
+        }
+
+    }
+}
+
+void useitem(){
+    bool choosing = true;
+    while(choosing){
+        displayitemsEquiped();
+        String choice = AskQuestion("What item would you like to use?");
+        //string swaptop = equipeds;
+        equipeds = itemsInventory[int.Parse(choice)-1];
+        //itemsInventory[int.Parse(choice)-1] = swaptop;
+
+        string done;
+        Console.WriteLine($"You are using the {equipeds} \nAre you Sure?");
+        done = Console.ReadLine();
+        if (done == "yes"){
+            choosing = false;
+            itemsInventory.Remove(equipeds);
+        }
+
+    }
+}
+displayWeaponsEquiped();
+Console.WriteLine("You found the stninkky sword and super sword");
+weaponsInventory.Add("Stinky Sword");
+weaponsInventory.Add("Super Sword");
+itemsInventory.AddRange(new string[] {smallPotion, mediumPotion, bigPotion});
+changeWeaponsEquiped();
+useitem();
+Console.WriteLine(equipeds);
+displayWeaponsEquiped();
+displayitemsEquiped();
+//end of the equiping program
+
+
 
 int wisdom = 1;
 int LifePotion = 0;
