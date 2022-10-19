@@ -1,4 +1,6 @@
-﻿int wisdom = 1;
+﻿//github test
+
+int wisdom = 1;
 int LifePotion = 0;
 int Coins = 0;
 bool dungeonKey = false;
