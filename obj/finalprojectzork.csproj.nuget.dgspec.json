@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dyson\\cs1400\\fun\\finalproject\\finalprojectzork\\finalprojectzork.csproj": {}
+    "C:\\Users\\dyson\\cs1400\\fun\\finalProject\\FinalProjectZork\\finalprojectzork.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dyson\\cs1400\\fun\\finalproject\\finalprojectzork\\finalprojectzork.csproj": {
+    "C:\\Users\\dyson\\cs1400\\fun\\finalProject\\FinalProjectZork\\finalprojectzork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dyson\\cs1400\\fun\\finalproject\\finalprojectzork\\finalprojectzork.csproj",
+        "projectUniqueName": "C:\\Users\\dyson\\cs1400\\fun\\finalProject\\FinalProjectZork\\finalprojectzork.csproj",
         "projectName": "finalprojectzork",
-        "projectPath": "C:\\Users\\dyson\\cs1400\\fun\\finalproject\\finalprojectzork\\finalprojectzork.csproj",
+        "projectPath": "C:\\Users\\dyson\\cs1400\\fun\\finalProject\\FinalProjectZork\\finalprojectzork.csproj",
         "packagesPath": "C:\\Users\\dyson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dyson\\cs1400\\fun\\finalproject\\finalprojectzork\\obj\\",
+        "outputPath": "C:\\Users\\dyson\\cs1400\\fun\\finalProject\\FinalProjectZork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dyson\\AppData\\Roaming\\NuGet\\NuGet.Config"
