@@ -947,14 +947,13 @@ TextTyping($"Life Potions: {LifePotion}");
 }
 
 
-string TextTyping(string Sentence){
+void TextTyping(string Sentence){
     foreach (var character in Sentence)
 {
     Console.Write(character);
     Thread.Sleep(40);
 }
 Console.WriteLine();
-    return Sentence;
 }
 
 
