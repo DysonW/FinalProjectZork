@@ -1,11 +1,36 @@
-﻿//Equiping program
+﻿int level = 1;
+bool dungeonKey = false;
+bool searchDungChest = true;
+(string Name, int Power, bool InPossession) bareHands = ("Bare Hands", 1, true);
+(string Name, int Power, bool InPossession) extrodinaryStick = ("Extrordinary stick", 5, false);
+(string Name, int Power, bool InPossession) Sword = ("Sword", 3, false);
+(string Name, int Power, bool InPossession) strongSword = ("Strong Sword", 5, false);
+(string Name, int Power, bool InPossession) stinkySword = ("Stink Sword", 6, false);
+(string Name, int Power, bool InPossession) superSword = ("Super Sword", 10, false);
+(string Name, int Power, bool InPossession) cowSword = ("Cow Sword", 30, false);
+(string Name, int Power, bool InPossession) cursedSword = ("Cursed Sword", 50, false);
+(string Name, int Power, bool) CurrentWeapon = bareHands;int wisdom = 1;
+int LifePotion = 0;
+int Attack = CurrentWeapon.Power + level;
+int Coins = 0;
+bool searchGobChest = true;
+int HitPoints = 20;
+int MaxLife = 20;
+int Experience = 0;
+int xpNeeded = 0;
+xpNeeded = xpNeeded +(100 * level);
+
+
+
+//Equiping program
+void Equip(){
 List<string> weaponsInventory = new List<string>();
-string strongSword = "Strong Sword";
+string StrongSword = "Strong Sword";
 string sword = "Sword";
 
-string equipeds = "Bear Hands";
+string equipeds = "Bare Hands";
 weaponsInventory.Add(sword);
-weaponsInventory.Add(strongSword);
+weaponsInventory.Add(StrongSword);
 weaponsInventory.Add("Cow Sword");
 Console.WriteLine(weaponsInventory[1]);
 
@@ -26,15 +51,16 @@ string AskQuestion(string question){
 void displayWeaponsEquiped(){
     int count = 1;
     foreach(string equiped in weaponsInventory){
-        Console.WriteLine($"{count}: {equiped}");
+        TextTyping($"{count}: {equiped}");
         count++;
     }
 }
 
+
 void displayitemsEquiped(){
     int count = 1;
     foreach(string equiped in itemsInventory){
-        Console.WriteLine($"{count}: {equiped}");
+        TextTyping($"{count}: {equiped}");
         count++;
     }
 }
@@ -48,7 +74,7 @@ void changeWeaponsEquiped(){
         equipeds = weaponsInventory[int.Parse(choice)-1];
         weaponsInventory[int.Parse(choice)-1] = swaptop;
         string done;
-        Console.WriteLine($"You are using the {equipeds} \nAre you ReAdY?");
+        TextTyping($"You are using the {equipeds} \nAre you ready?");
         done = Console.ReadLine();
         if (done == "yes"){
             choosing = false;
@@ -87,17 +113,9 @@ Console.WriteLine(equipeds);
 displayWeaponsEquiped();
 displayitemsEquiped();
 //end of the equiping program
+}
 
 
-
-int wisdom = 1;
-int LifePotion = 0;
-int Coins = 0;
-bool dungeonKey = false;
-bool searchDungChest = true;
-bool Stick = false;
-int level = 1;
-bool searchGobChest = true;
 
 void Village(){
     TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love.\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
@@ -283,7 +301,8 @@ break;
 else if(search == "chest" ){
 TextTyping("You slowly open the chest");
 Console.ReadKey();
-RareSearching();   
+TextTyping("You have found the Sword!!");
+Sword.InPossession = true;
 searching = false;
 }
 
@@ -954,7 +973,7 @@ LifePotion++;
 
 if(searchScore == 10){
 TextTyping("You found an extrordinary stick! :)");
-Stick = true;
+
 }
 
 
@@ -977,7 +996,6 @@ LifePotion++;
 
 if(searchScore == 10){
 TextTyping("You found an extrordinary stick! :)");
-Stick = true;
 }
 
 
@@ -1000,7 +1018,6 @@ LifePotion++;
 
 if(searchScore == 10){
 TextTyping("You found an Super Sword! :)");
-Stick = true;
 }
 
 
@@ -1023,7 +1040,6 @@ LifePotion++;
 
 if(searchScore == 10){
 TextTyping("You found The Cursed Sword! :)");
-Stick = true;
 }
 
 
@@ -1036,14 +1052,30 @@ TextTyping("You Found Nothing!!");
 
 void Inventory(){
 TextTyping($"Life Potions: {LifePotion}");
+
+TextTyping("Would you like to see your stats?\n<yes or no>");
+string response = Console.ReadLine();
+if(response == "yes"){
+TextTyping($"Attack: {Attack}");
+TextTyping($"Hit Points: {HitPoints}");
+//TextTyping($"Experience Point: {Experience}/{xpNeeded}");
+TextTyping($"Weapon: {CurrentWeapon.Name}");
+Console.ReadLine();
 }
+else if(response == "no")
+    TextTyping("Sounds Good");
+else{
+    TextTyping("I'm sorry, I can't read that");
+}
+}
+
 
 
 void TextTyping(string Sentence){
     foreach (var character in Sentence)
 {
     Console.Write(character);
-    Thread.Sleep(40);
+    Thread.Sleep(10);
 }
 Console.WriteLine();
 }
