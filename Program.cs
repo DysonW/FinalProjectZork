@@ -119,11 +119,11 @@ displayitemsEquiped();
 
 
 void Village(){
-    TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love.\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
+    TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love, plus a burning skeleton\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
     Console.ReadKey();
     bool inVillage = true;
     while(inVillage == true){
-    TextTyping("<house, shop, east, search, inventory>");
+    TextTyping("<house, shop, east, skeleton, search, inventory>");
     string response = Console.ReadLine();
     if(response == "house"){
     TextTyping("You make your way to you house and open the door");
@@ -144,6 +144,10 @@ TextTyping("You make your way to the village gate, and go beyond.");
 Console.ReadKey();
 inVillage = false;
 Clearing1();
+}
+if (response == "skeleton")
+{
+skeleyTalk();
 }
 
 if (response == "search"){
@@ -330,15 +334,20 @@ Console.ReadKey();
 void CowField(){
 TextTyping("As you exit the passageway, you are stunned to see a field full of cows just minding their own business.");
 TextTyping("You hate cows");
-TextTyping("There isn't much to do here other then fume in rage, you should return to the shop.");
+TextTyping("There isn't much to do here other then fume in rage, or talk to the odd looking farmer. You should return to the shop.");
 bool inField = true;
 while(inField){
-TextTyping("<Leave or inventory>");
+TextTyping("<Leave inventory  talk>");
 string response = Console.ReadLine();
 if(response == "leave"){
 TextTyping("You turn around and head back to the shop");
 inField = false;
 Shop();
+}
+else if (response == "talk")
+{
+    Console.WriteLine("you walk over to the strange looking farmer");
+    secretFarmer();
 }
 
 if (response == "inventory"){
@@ -692,10 +701,10 @@ Console.ReadKey();
 
 void AngryClearing(){
 TextTyping("You have entered this clearing, and as you do, you feel a rage come over you. You are mad.");
-TextTyping("You see a path going back to the north, but that's about it.");
+TextTyping("You see a path going back to the north, and a angry travler.");
 bool inClearing = true;
 while(inClearing){
-TextTyping("<north, search, inventory>");
+TextTyping("<north, search, inventory, talk>");
 string response = Console.ReadLine();
 if(response == "north"){
     TextTyping("You start heading back North!");
@@ -736,7 +745,10 @@ if(response == "inventory"){
     Inventory();
     Console.ReadKey();
 }
-
+if (response== "talk")
+{
+    angryTravler();
+}
 else{
 TextTyping("What would you like to do?");
 Console.ReadKey();
@@ -1236,20 +1248,136 @@ else{
 
 
 
-void TextTyping(string Sentence){
-    foreach (var character in Sentence)
-{
-    Console.Write(character);
-    Thread.Sleep(10);
-}
-Console.WriteLine();
-}
-
 
 
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
 House();
+
+void secretFarmer()
+{
+    TextTyping("Howdy pardner! What are you doin round these parts?");
+    Console.WriteLine("(1) just passing through \n(2) The better question is how did you get here \n(3) Have you seen my wife?");
+    int answer = int.Parse(Console.ReadLine());
+    switch (answer)
+    {
+        case 1:
+            TextTyping("Just passing through the secret cow field, that was hidden from the whole village?");
+            Console.ReadKey();
+            break;
+        case 2:
+            TextTyping("Im the secret cow farmer man. I protect the secret cows from the evil cow man. ");
+            Console.ReadKey();
+            break;
+        case 3:
+            TextTyping("HA! I find it hard to believe that a scrawny lad such as you managed to score a wife. Besides if I saw your wife she'd be my wife now.");
+            Console.ReadKey();
+            break;
+    }
+    TextTyping("Any-who, what can I do you for?");
+    Console.ReadKey();
+    bool speaking = true;
+    while (speaking == true)
+    {
+        Console.WriteLine("(1) What is this place? \n(2) Why cows? \n(3) I hate cows. \n(4) Nothing I just took a wrong turn at Albuquerque");
+        int answer2 = int.Parse(Console.ReadLine());
+        switch (answer2)
+        {
+            case 1:
+                TextTyping("this is the secret cow farm. These are sacred cows gifed by the great cow elders to be protected from the evil cow man");
+                Console.ReadKey();
+                break;
+            case 2:
+                TextTyping("it is because cows are.... they are so...uh...the gods gifted them becuase they have..uh. Look I dunno man, I just work here");
+                Console.ReadKey();
+                break;
+            case 3:
+                TextTyping("YOU TAKE THAT BACK YOU.. YOU.. COW HEATHEN!");
+                TextTyping("the farmer hits you in the head with a pile of cow dung. you take two damage. You should probably leave before he throws a cow at you");
+                //hp minus 2
+
+                speaking = false;
+                break;
+            case 4:
+                TextTyping("Albuquerque? uh yea sure, good luck sir jimbo");
+                Console.ReadKey();
+                speaking = false;
+                break;
+            default:
+                TextTyping("Hm? Didn't hear that pardner");
+                break;
+        }
+    }
+}
+
+void angryTravler()
+{
+    TextTyping("ARGH! I hate it here!");
+    bool speaking = true;
+    while (speaking)
+    {
+        Console.WriteLine("(1) Why are you so mad? \n(2) Why is this place so angry? \n(3) Have you seen my wife? \n(4) I'll just leave you alone");
+        int travAnswer = int.Parse(Console.ReadLine());
+        switch (travAnswer)
+        {
+            case 1:
+                TextTyping("Grr! Because this is the angry clearing. I'd leave but I'm just too darn angry to walk!");
+                Console.ReadKey();
+                break;
+            case 2:
+                TextTyping("ARGH! its because the evil cow man curse the ground with a forever angry spell. Anyone who touches the ground in this clearing is cursed with being angry! ");
+                Console.ReadKey();
+                break;
+            case 3:
+                TextTyping("I DON'T EVEN KNOW WHO YOU ARE, but I think I saw your wife go towards the very obvious dungeon");
+                Console.ReadKey();
+                break;
+            case 4:
+                TextTyping("FINE, Just leave me alone with all of this pent up rage! YOUR JUST SCARED OF ME, SO RUN AWAY LITTLE SCARED LAD!");
+                Console.ReadKey();
+                speaking = false;
+                break;
+                default:
+                TextTyping("IM ANGRY NOT DEAF! YOU DONT'T NEED TO WHISPER! SPEAK LOUDER!");
+                Console.ReadKey();
+                break;
+        }
+    }
+}
+
+void skeleyTalk(){
+    TextTyping("You walk toward the skeleton, hoping to hear his kind words");
+    int skeRageMeter = 0;
+    while (skeRageMeter!=3){
+        TextTyping("(1) Hello! \n(2) How are the wife and kids? \n(3) Whats the afterlife like? \n(4) Welp, sleep well");
+        int response = Int32.Parse(Console.ReadLine());
+        switch (response){
+            case 4:
+            Village();
+            break;
+            default:
+            TextTyping("...");
+            skeRageMeter++;
+            break;
+        }
+    }
+    TextTyping("UGH DO YOU EVER QUIT! All I want is to peacfully rot in to nothing, BUT NOO THATS NOT POSSIBLE. Some good for nothing squire wants to know how my wife and kids are, there dead thanks for pouring salt onto that wound for me.");
+    TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
+    // add cusrsed apple     
+
+    }
+
+void TextTyping(string Sentence)
+{
+    foreach (var character in Sentence)
+    {
+        Console.Write(character);
+        Thread.Sleep(10);
+    }
+    Console.Beep();
+    Console.WriteLine();
+}
+
 
 
 
