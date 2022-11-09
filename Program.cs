@@ -9,9 +9,11 @@ bool searchDungChest = true;
 (string Name, int Power, bool InPossession) superSword = ("Super Sword", 10, false);
 (string Name, int Power, bool InPossession) cowSword = ("Cow Sword", 30, false);
 (string Name, int Power, bool InPossession) cursedSword = ("Cursed Sword", 50, false);
-(string Name, int Power, bool) CurrentWeapon = bareHands;int wisdom = 1;
+(string Name, int Power, bool) CurrentWeapon = bareHands;
+int wisdom = 1;
 int LifePotion = 0;
 int Attack = CurrentWeapon.Power + level;
+
 int Coins = 0;
 bool searchGobChest = true;
 int HitPoints = 20;
@@ -23,16 +25,15 @@ xpNeeded = xpNeeded +(100 * level);
 
 
 //Equiping program
-void Equip(){
+//void Equip(){
 List<string> weaponsInventory = new List<string>();
-string StrongSword = "Strong Sword";
-string sword = "Sword";
 
-string equipeds = "Bare Hands";
-weaponsInventory.Add(sword);
-weaponsInventory.Add(StrongSword);
-weaponsInventory.Add("Cow Sword");
-Console.WriteLine(weaponsInventory[1]);
+
+string equipeds = bareHands.Name;
+weaponsInventory.Add(Sword.Name);
+weaponsInventory.Add(strongSword.Name);
+weaponsInventory.Add(extrodinaryStick.Name);
+
 
 
 List<string> itemsInventory = new List<string>();
@@ -102,8 +103,9 @@ void useitem(){
 
     }
 }
+/*
 displayWeaponsEquiped();
-Console.WriteLine("You found the stninkky sword and super sword");
+Console.WriteLine("You found the stinky sword and super sword");
 weaponsInventory.Add("Stinky Sword");
 weaponsInventory.Add("Super Sword");
 itemsInventory.AddRange(new string[] {smallPotion, mediumPotion, bigPotion});
@@ -112,8 +114,9 @@ useitem();
 Console.WriteLine(equipeds);
 displayWeaponsEquiped();
 displayitemsEquiped();
+}*/
 //end of the equiping program
-}
+
 
 
 
@@ -267,8 +270,8 @@ Console.ReadKey();
 }
 
 void House(){
-TextTyping("You are in your house! what would you like to do?");
-TextTyping("There is a door that you can take, or you can take a look around your house, or look in your backpack.");
+TextTyping("You are in your house!");
+TextTyping("You can use the door, take a look around your house, or look in your backpack.");
 bool inHouse = true;
 while(inHouse == true){
 TextTyping("<Door, search, inventory>");
@@ -1053,13 +1056,26 @@ TextTyping("You Found Nothing!!");
 void Inventory(){
 TextTyping($"Life Potions: {LifePotion}");
 
+displayWeaponsEquiped();
+TextTyping("Would you like to change your sword?\n<yes or no>");
+String response = Console.ReadLine();
+if (response == "yes"){
+    changeWeaponsEquiped();
+}
+else if(response == "no")
+    TextTyping("Sounds Good");
+else{
+    TextTyping("I'm sorry, I can't read that");
+}
+
 TextTyping("Would you like to see your stats?\n<yes or no>");
-string response = Console.ReadLine();
+response = Console.ReadLine();
 if(response == "yes"){
 TextTyping($"Attack: {Attack}");
+
 TextTyping($"Hit Points: {HitPoints}");
 //TextTyping($"Experience Point: {Experience}/{xpNeeded}");
-TextTyping($"Weapon: {CurrentWeapon.Name}");
+TextTyping($"Weapon: {equipeds}");
 Console.ReadLine();
 }
 else if(response == "no")
