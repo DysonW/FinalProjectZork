@@ -1432,7 +1432,7 @@ void Inventory()
         TextTyping("Would you like to change your weapon?\n<y or n>");
         response = Console.ReadLine();
         if (response == "y")
-            Equiping();
+           //Equiping();
         if (response == "n")
             TextTyping("Okay, lets get a move on then.");
         else
