@@ -1422,6 +1422,8 @@ void Inventory()
 
     TextTyping("Would you like to see your stats?\n<yes or no>");
     string response = Console.ReadLine();
+    bool responding = true;
+    while(responding){
     if (response == "yes")
     {
         TextTyping($"Attack: {Attack}");
@@ -1430,6 +1432,7 @@ void Inventory()
         TextTyping($"Weapon: {CurrentWeapon.Name}");
         Console.ReadLine();
         TextTyping("Would you like to change your weapon?\n<y or n>");
+        responding = false;
         response = Console.ReadLine();
         if (response == "y")
            //Equiping();
@@ -1438,14 +1441,20 @@ void Inventory()
         else
         {
             TextTyping("Sorry, can't read that");
+            responding = true;
         }
     }
-    else if (response == "no")
+    
+    else if (response == "no"){
         TextTyping("Sounds Good");
+        responding = false;
+    }
+    
     else
     {
         TextTyping("I'm sorry, I can't read that");
     }
+}
 }
 
 
