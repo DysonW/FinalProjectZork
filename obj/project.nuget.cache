@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AwVE/zMvDL9yf5PHq3mNaVrx3N3/CEtDJdZ+blpb09SB1D8eA/4a8ZzoM5VDP9/AJm7DZD1ZfWyBIt9TMh03uw==",
+  "dgSpecHash": "8UptDk5o9N/xtDtVh9pFgyFKdFisjz2jynDsRelXbouMitzlSEYKi9ffbABRb7etJzLjPxK3NAq6mYmHlvP7AA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dyson\\cs1400\\fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
+  "projectFilePath": "/home/logannelson2001/FinalProjectZork/finalprojectzork.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
