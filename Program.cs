@@ -123,7 +123,11 @@ void Equip()
         }
     }
     displayWeaponsEquiped();
+<<<<<<< HEAD
     Console.WriteLine("You found the stninky sword and super sword");
+=======
+    Console.WriteLine("You found the stninkky sword and super sword");
+>>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
     weaponsInventory.Add("Stinky Sword");
     weaponsInventory.Add("Super Sword");
     itemsInventory.AddRange(new string[] { smallPotion, mediumPotion, bigPotion });
@@ -1317,6 +1321,150 @@ void GoblinCombat()
             TextTyping("You couldn't get away!!");
         }
     }
+<<<<<<< HEAD
+=======
+}
+
+void CommonSearching()
+{
+    Random search = new Random();
+    int item = search.Next(0, 10);
+    int searchScore = item + wisdom;
+    if (searchScore >= 5 && searchScore <= 9)
+    {
+        Console.WriteLine(searchScore);
+        TextTyping("You have found a Life Potion!!!");
+        LifePotion++;
+    }
+
+    if (searchScore == 10)
+    {
+        TextTyping("You found an extrordinary stick! :)");
+        WeaponsInPossession.Add(extrodinaryStick);
+
+    }
+
+
+    else if (searchScore >= 0 && searchScore <= 4)
+    {
+        TextTyping("You Found Nothing!!");
+    }
+
+
+}
+
+void UncommonSearching()
+{
+    Random search = new Random();
+    int item = search.Next(0, 20);
+    int searchScore = item + wisdom;
+    if (searchScore >= 5 && searchScore <= 9)
+    {
+        Console.WriteLine(searchScore);
+        TextTyping("You have found a Life Potion!!!");
+        LifePotion++;
+    }
+
+    if (searchScore == 10)
+    {
+        TextTyping("You found an extrordinary stick! :)");
+    }
+
+
+    else if (searchScore >= 0 && searchScore <= 4)
+    {
+        TextTyping("You Found Nothing!!");
+    }
+
+
+}
+
+void RareSearching()
+{
+    Random search = new Random();
+    int item = search.Next(0, 50);
+    int searchScore = item + wisdom;
+    if (searchScore >= 5 && searchScore <= 9)
+    {
+        Console.WriteLine(searchScore);
+        TextTyping("You have found a Life Potion!!!");
+        LifePotion++;
+    }
+
+    if (searchScore == 10)
+    {
+        TextTyping("You found a Super Sword! :)");
+        WeaponsInPossession.Add(superSword);
+    }
+
+
+    else if (searchScore >= 0 && searchScore <= 4)
+    {
+        TextTyping("You Found Nothing!!");
+    }
+
+
+}
+
+void CursedSearching()
+{
+    Random search = new Random();
+    int item = search.Next(0, 10);
+    int searchScore = item + wisdom;
+    if (searchScore >= 5 && searchScore <= 9)
+    {
+        Console.WriteLine(searchScore);
+        TextTyping("You have found the cursed apple!!!");
+        LifePotion++;
+    }
+
+    if (searchScore == 10)
+    {
+        TextTyping("You found The Cursed Sword! :)");
+        WeaponsInPossession.Add(cursedSword);
+    }
+
+
+    else if (searchScore >= 0 && searchScore <= 4)
+    {
+        TextTyping("You Found Nothing!!");
+    }
+
+
+}
+
+void Inventory()
+{
+    TextTyping($"Life Potions: {LifePotion}");
+
+    TextTyping("Would you like to see your stats?\n<yes or no>");
+    string response = Console.ReadLine();
+    if (response == "yes")
+    {
+        TextTyping($"Attack: {Attack}");
+        TextTyping($"Hit Points: {Health}/{MaxLife}");
+        //TextTyping($"Experience Point: {Experience}/{xpNeeded}");
+        TextTyping($"Weapon: {CurrentWeapon.Name}");
+        Console.ReadLine();
+        TextTyping("Would you like to change your weapon?\n<y or n>");
+        response = Console.ReadLine();
+        if (response == "y")
+            Equiping();
+        if (response == "n")
+            TextTyping("Okay, lets get a move on then.");
+        else
+        {
+            TextTyping("Sorry, can't read that");
+        }
+    }
+    else if (response == "no")
+        TextTyping("Sounds Good");
+    else
+    {
+        TextTyping("I'm sorry, I can't read that");
+    }
+
+>>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
 }
 
 void CommonSearching()
@@ -1496,6 +1644,50 @@ void skeleyTalk(){
 
     }
 
+
+void TextTyping(string Sentence)
+{
+    foreach (var character in Sentence)
+    {
+        Console.Write(character);
+        Thread.Sleep(10);
+    }
+    Console.WriteLine();
+
+}
+
+void skeleyTalk(){
+    TextTyping("You walk toward the skeleton, hoping to hear his kind words");
+    int skeRageMeter = 0;
+    while (skeRageMeter!=3){
+        TextTyping("(1) Hello! \n(2) How are the wife and kids? \n(3) Whats the afterlife like? \n(4) Welp, sleep well");
+        int response = Int32.Parse(Console.ReadLine());
+        switch (response){
+            case 4:
+            Village();
+            break;
+            default:
+            TextTyping("...");
+            skeRageMeter++;
+            break;
+        }
+    }
+    TextTyping("UGH DO YOU EVER QUIT! All I want is to peacfully rot in to nothing, BUT NOO THATS NOT POSSIBLE. Some good for nothing squire wants to know how my wife and kids are, there dead thanks for pouring salt onto that wound for me.");
+    TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
+    // add cusrsed apple     
+
+    }
+
+void TextTyping(string Sentence)
+{
+    foreach (var character in Sentence)
+    {
+        Console.Write(character);
+        Thread.Sleep(10);
+    }
+    Console.Beep();
+    Console.WriteLine();
+}
 
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");

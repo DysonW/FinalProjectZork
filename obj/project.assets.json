@@ -8,19 +8,27 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\dyson\\.nuget\\packages\\": {}
+    "C:\\Users\\cardi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
       "projectName": "finalprojectzork",
       "projectPath": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
       "packagesPath": "C:\\Users\\dyson\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\cardi\\Documents\\Final\\FinalProjectZork\\finalprojectzork.csproj",
+      "projectName": "finalprojectzork",
+      "projectPath": "C:\\Users\\cardi\\Documents\\Final\\FinalProjectZork\\finalprojectzork.csproj",
+      "packagesPath": "C:\\Users\\cardi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cardi\\Documents\\Final\\FinalProjectZork\\obj\\",
+>>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dyson\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\cardi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -59,7 +67,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+>>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
       }
     }
   },
