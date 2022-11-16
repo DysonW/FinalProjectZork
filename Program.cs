@@ -123,11 +123,9 @@ void Equip()
         }
     }
     displayWeaponsEquiped();
-<<<<<<< HEAD
+
     Console.WriteLine("You found the stninky sword and super sword");
-=======
-    Console.WriteLine("You found the stninkky sword and super sword");
->>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
+
     weaponsInventory.Add("Stinky Sword");
     weaponsInventory.Add("Super Sword");
     itemsInventory.AddRange(new string[] { smallPotion, mediumPotion, bigPotion });
@@ -157,7 +155,7 @@ void Village()
     while (inVillage == true)
     {
         TextTyping("<house, shop, east, search, inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "house")
         {
             TextTyping("You make your way to you house and open the door");
@@ -241,7 +239,7 @@ void Shop()
     while (inShop == true)
     {
         TextTyping("<exit, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "exit")
         {
             TextTyping("You make your way to the door and exit to the village");
@@ -333,7 +331,7 @@ void House()
     while (inHouse == true)
     {
         TextTyping("<Door, search, inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "door")
         {
             TextTyping("You move to the door and turn the handle, stepping out into a bright new world.");
@@ -406,7 +404,7 @@ void CowField()
     while (inField)
     {
         TextTyping("<Leave or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "leave")
         {
             TextTyping("You turn around and head back to the shop");
@@ -436,7 +434,7 @@ void Clearing1()
     while (inClearing1)
     {
         TextTyping("<east, west, south, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
 
         if (response == "east")
         {
@@ -518,7 +516,7 @@ void SusClearing()
     while (inSusClearing == true)
     {
         TextTyping("<west, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
 
         if (response == "west")
         {
@@ -585,7 +583,7 @@ void BarrenClearing()
     while (inClearing2 == true)
     {
         TextTyping("What would you like to do?\n<north, south, east, west, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading on the Northern Path!");
@@ -673,7 +671,7 @@ void WonderfulClearing()
     while (inClearing3 == true)
     {
         TextTyping("<east, west, north, search, inventory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
 
         if (response == "west")
         {
@@ -763,7 +761,7 @@ void Clearing4()
     while (inClearing4)
     {
         TextTyping("<east, south, search, inventory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "east")
         {
             TextTyping("You start heading east");
@@ -833,7 +831,7 @@ void AngryClearing()
     while (inClearing)
     {
         TextTyping("<north, search, inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading back North!");
@@ -899,7 +897,7 @@ void CowLookOut()
     while (inCowLookout)
     {
         TextTyping("<south or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "south")
         {
             TextTyping("You start heading back the way that you came, away from thw cows");
@@ -930,7 +928,7 @@ void SouthernClearing()
     while (inSouthClear)
     {
         TextTyping("<north, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading North!");
@@ -999,7 +997,7 @@ void Clearing6()
     while (inClearing6)
     {
         TextTyping("<south, west, search, or inventory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "south")
         {
             TextTyping("You begin heading south!!");
@@ -1061,7 +1059,7 @@ void GoblinClearing()
     while (inGobClear)
     {
         TextTyping("<north, fight, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading North!!");
@@ -1099,7 +1097,7 @@ void GoblinCamp()
     while (InGoblinCamp)
     {
         TextTyping("<north, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading to the North");
@@ -1207,7 +1205,7 @@ void GoblinCombat()
         Console.WriteLine("Player's Turn");
         TextTyping("What would you like to do?");
         Console.WriteLine("<attack, run>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         bool Responding = true;
         while (Responding)
         {
@@ -1321,8 +1319,7 @@ void GoblinCombat()
             TextTyping("You couldn't get away!!");
         }
     }
-<<<<<<< HEAD
-=======
+
 }
 
 void CommonSearching()
@@ -1438,149 +1435,7 @@ void Inventory()
     TextTyping($"Life Potions: {LifePotion}");
 
     TextTyping("Would you like to see your stats?\n<yes or no>");
-    string response = Console.ReadLine();
-    if (response == "yes")
-    {
-        TextTyping($"Attack: {Attack}");
-        TextTyping($"Hit Points: {Health}/{MaxLife}");
-        //TextTyping($"Experience Point: {Experience}/{xpNeeded}");
-        TextTyping($"Weapon: {CurrentWeapon.Name}");
-        Console.ReadLine();
-        TextTyping("Would you like to change your weapon?\n<y or n>");
-        response = Console.ReadLine();
-        if (response == "y")
-            Equiping();
-        if (response == "n")
-            TextTyping("Okay, lets get a move on then.");
-        else
-        {
-            TextTyping("Sorry, can't read that");
-        }
-    }
-    else if (response == "no")
-        TextTyping("Sounds Good");
-    else
-    {
-        TextTyping("I'm sorry, I can't read that");
-    }
-
->>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
-}
-
-void CommonSearching()
-{
-    Random search = new Random();
-    int item = search.Next(0, 10);
-    int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore <= 9)
-    {
-        Console.WriteLine(searchScore);
-        TextTyping("You have found a Life Potion!!!");
-        LifePotion++;
-    }
-
-    if (searchScore == 10)
-    {
-        TextTyping("You found an extrordinary stick! :)");
-        WeaponsInPossession.Add(extrodinaryStick);
-
-    }
-
-
-    else if (searchScore >= 0 && searchScore <= 4)
-    {
-        TextTyping("You Found Nothing!!");
-    }
-
-
-}
-
-void UncommonSearching()
-{
-    Random search = new Random();
-    int item = search.Next(0, 20);
-    int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore <= 9)
-    {
-        Console.WriteLine(searchScore);
-        TextTyping("You have found a Life Potion!!!");
-        LifePotion++;
-    }
-
-    if (searchScore == 10)
-    {
-        TextTyping("You found an extrordinary stick! :)");
-    }
-
-
-    else if (searchScore >= 0 && searchScore <= 4)
-    {
-        TextTyping("You Found Nothing!!");
-    }
-
-
-}
-
-void RareSearching()
-{
-    Random search = new Random();
-    int item = search.Next(0, 50);
-    int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore <= 9)
-    {
-        Console.WriteLine(searchScore);
-        TextTyping("You have found a Life Potion!!!");
-        LifePotion++;
-    }
-
-    if (searchScore == 10)
-    {
-        TextTyping("You found a Super Sword! :)");
-        WeaponsInPossession.Add(superSword);
-    }
-
-
-    else if (searchScore >= 0 && searchScore <= 4)
-    {
-        TextTyping("You Found Nothing!!");
-    }
-
-
-}
-
-void CursedSearching()
-{
-    Random search = new Random();
-    int item = search.Next(0, 10);
-    int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore <= 9)
-    {
-        Console.WriteLine(searchScore);
-        TextTyping("You have found the cursed apple!!!");
-        LifePotion++;
-    }
-
-    if (searchScore == 10)
-    {
-        TextTyping("You found The Cursed Sword! :)");
-        WeaponsInPossession.Add(cursedSword);
-    }
-
-
-    else if (searchScore >= 0 && searchScore <= 4)
-    {
-        TextTyping("You Found Nothing!!");
-    }
-
-
-}
-
-void Inventory()
-{
-    TextTyping($"Life Potions: {LifePotion}");
-
-    TextTyping("Would you like to see your stats?\n<yes or no>");
-    string response = Console.ReadLine();
+    string? response = Console.ReadLine();
     if (response == "yes")
     {
         TextTyping($"Attack: {Attack}");
@@ -1643,52 +1498,6 @@ void skeleyTalk(){
     // add cusrsed apple     
 
     }
-
-
-void TextTyping(string Sentence)
-{
-    foreach (var character in Sentence)
-    {
-        Console.Write(character);
-        Thread.Sleep(10);
-    }
-    Console.WriteLine();
-
-}
-
-void skeleyTalk(){
-    TextTyping("You walk toward the skeleton, hoping to hear his kind words");
-    int skeRageMeter = 0;
-    while (skeRageMeter!=3){
-        TextTyping("(1) Hello! \n(2) How are the wife and kids? \n(3) Whats the afterlife like? \n(4) Welp, sleep well");
-        int response = Int32.Parse(Console.ReadLine());
-        switch (response){
-            case 4:
-            Village();
-            break;
-            default:
-            TextTyping("...");
-            skeRageMeter++;
-            break;
-        }
-    }
-    TextTyping("UGH DO YOU EVER QUIT! All I want is to peacfully rot in to nothing, BUT NOO THATS NOT POSSIBLE. Some good for nothing squire wants to know how my wife and kids are, there dead thanks for pouring salt onto that wound for me.");
-    TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
-    // add cusrsed apple     
-
-    }
-
-void TextTyping(string Sentence)
-{
-    foreach (var character in Sentence)
-    {
-        Console.Write(character);
-        Thread.Sleep(10);
-    }
-    Console.Beep();
-    Console.WriteLine();
-}
-
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
 House();
