@@ -2,6 +2,7 @@
 int Health = 20;
 bool dungeonKey = false;
 bool searchDungChest = true;
+
 (string Name, int Power) bareHands = ("Bare Hands", 1);
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
@@ -13,9 +14,11 @@ bool searchDungChest = true;
 (string Name, int Power) CurrentWeapon = bareHands;
 List<(string, int)> WeaponsInPossession = new List<(string, int)>();
 WeaponsInPossession.Add(bareHands);
+
 int wisdom = 1;
 int LifePotion = 0;
 int Attack = CurrentWeapon.Power * level;
+
 int Coins = 0;
 bool searchGobChest = true;
 int MaxLife = 20;
@@ -31,6 +34,7 @@ void Equip()
     List<string> weaponsInventory = new List<string>();
     string StrongSword = "Strong Sword";
     string sword = "Sword";
+
 
     string equipeds = "Bare Hands";
     weaponsInventory.Add(sword);
@@ -95,6 +99,7 @@ void Equip()
         }
     }
 
+
     void useitem()
     {
         bool choosing = true;
@@ -145,6 +150,7 @@ void Equiping()
 
 }
 
+
 void Village()
 {
     TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love.\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
@@ -161,6 +167,7 @@ void Village()
             inVillage = false;
             House();
         }
+
 
         if (response == "shop")
         {
@@ -383,9 +390,11 @@ void House()
         else
         {
 
+
             TextTyping("What would you like to do?");
             Console.ReadKey();
         }
+
 
     }
 }
@@ -803,6 +812,7 @@ void Clearing4()
             }
         }
 
+
         if (response == "inventory")
         {
             Inventory();
@@ -859,6 +869,7 @@ void AngryClearing()
                     TextTyping("Whelp, good luck!");
                     searching = false;
                 }
+
 
                 else
                 {
@@ -1641,6 +1652,7 @@ void Inventory()
         TextTyping("I'm sorry, I can't read that");
         responding = false;
     }
+
 }
 }
 
@@ -1654,7 +1666,31 @@ void TextTyping(string Sentence)
         Thread.Sleep(10);
     }
     Console.WriteLine();
+    Console.Beep();
+
 }
+
+void skeleyTalk(){
+    TextTyping("You walk toward the skeleton, hoping to hear his kind words");
+    int skeRageMeter = 0;
+    while (skeRageMeter!=3){
+        TextTyping("(1) Hello! \n(2) How are the wife and kids? \n(3) Whats the afterlife like? \n(4) Welp, sleep well");
+        int response = Int32.Parse(Console.ReadLine());
+        switch (response){
+            case 4:
+            Village();
+            break;
+            default:
+            TextTyping("...");
+            skeRageMeter++;
+            break;
+        }
+    }
+    TextTyping("UGH DO YOU EVER QUIT! All I want is to peacfully rot in to nothing, BUT NOO THATS NOT POSSIBLE. Some good for nothing squire wants to know how my wife and kids are, there dead thanks for pouring salt onto that wound for me.");
+    TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
+    // add cusrsed apple     
+
+    }
 
 
 
