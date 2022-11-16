@@ -150,15 +150,14 @@ void Equiping()
 
 }
 
-
 void Village()
 {
-    TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love.\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
+    TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love, and a burning skeleton on the ground.\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
     Console.ReadKey();
     bool inVillage = true;
     while (inVillage == true)
     {
-        TextTyping("<house, shop, east, search, inventory>");
+        TextTyping("<house, shop, east, skeleton, search, inventory>");
         string? response = Console.ReadLine();
         if (response == "house")
         {
@@ -221,6 +220,10 @@ void Village()
         if (response == "inventory")
         {
             Inventory();
+        }
+
+        if (response == "skeleton"){
+            skeleyTalk();
         }
 
         else
@@ -1343,15 +1346,14 @@ void OverWorldCombat()
         int GobHealth = Life.Next(2, 6);
         GoblinLife[y] = GobHealth;
     }
-    TextTyping($"{NumMonster} Goblins charge you!!");
+    TextTyping($"{NumMonster} Monsters charge you!!");
     Rounds();
 
     void Rounds()
     {
         if (GoblinLife[0] <= 0 && GoblinLife[1] <= 0 && GoblinLife[2] <= 0)
         {
-            TextTyping("You have defeated all of the goblins, Congratulations!");
-            System.Environment.Exit(0);
+            TextTyping("You have defeated all of the Monsters, Congratulations!");
         }
         if (Health <= 0)
         {
@@ -1655,8 +1657,6 @@ void Inventory()
 
 }
 }
-
-
 
 void TextTyping(string Sentence)
 {
