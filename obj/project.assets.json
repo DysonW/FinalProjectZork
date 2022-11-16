@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dyson\\cs1400\\fun\\Zork\\FinalProjectZork\\finalprojectzork.csproj",
+      "projectUniqueName": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
       "projectName": "finalprojectzork",
-      "projectPath": "C:\\Users\\dyson\\cs1400\\fun\\Zork\\FinalProjectZork\\finalprojectzork.csproj",
+      "projectPath": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
       "packagesPath": "C:\\Users\\dyson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dyson\\cs1400\\fun\\Zork\\FinalProjectZork\\obj\\",
+      "outputPath": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dyson\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -62,5 +62,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
