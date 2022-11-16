@@ -159,7 +159,7 @@ void Village()
     while (inVillage == true)
     {
         TextTyping("<house, shop, east, search, inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "house")
         {
             TextTyping("You make your way to you house and open the door");
@@ -243,7 +243,7 @@ void Shop()
     while (inShop == true)
     {
         TextTyping("<exit, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "exit")
         {
             TextTyping("You make your way to the door and exit to the village");
@@ -335,7 +335,7 @@ void House()
     while (inHouse == true)
     {
         TextTyping("<Door, search, inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "door")
         {
             TextTyping("You move to the door and turn the handle, stepping out into a bright new world.");
@@ -408,7 +408,7 @@ void CowField()
     while (inField)
     {
         TextTyping("<Leave or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "leave")
         {
             TextTyping("You turn around and head back to the shop");
@@ -438,7 +438,7 @@ void Clearing1()
     while (inClearing1)
     {
         TextTyping("<east, west, south, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
 
         if (response == "east")
         {
@@ -520,7 +520,7 @@ void SusClearing()
     while (inSusClearing == true)
     {
         TextTyping("<west, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
 
         if (response == "west")
         {
@@ -587,7 +587,7 @@ void BarrenClearing()
     while (inClearing2 == true)
     {
         TextTyping("What would you like to do?\n<north, south, east, west, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading on the Northern Path!");
@@ -675,7 +675,7 @@ void WonderfulClearing()
     while (inClearing3 == true)
     {
         TextTyping("<east, west, north, search, inventory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
 
         if (response == "west")
         {
@@ -765,7 +765,7 @@ void Clearing4()
     while (inClearing4)
     {
         TextTyping("<east, south, search, inventory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "east")
         {
             TextTyping("You start heading east");
@@ -835,7 +835,7 @@ void AngryClearing()
     while (inClearing)
     {
         TextTyping("<north, search, inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading back North!");
@@ -901,7 +901,7 @@ void CowLookOut()
     while (inCowLookout)
     {
         TextTyping("<south or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "south")
         {
             TextTyping("You start heading back the way that you came, away from thw cows");
@@ -932,7 +932,7 @@ void SouthernClearing()
     while (inSouthClear)
     {
         TextTyping("<north, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading North!");
@@ -1001,7 +1001,7 @@ void Clearing6()
     while (inClearing6)
     {
         TextTyping("<south, west, search, or inventory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "south")
         {
             TextTyping("You begin heading south!!");
@@ -1063,7 +1063,7 @@ void GoblinClearing()
     while (inGobClear)
     {
         TextTyping("<north, fight, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading North!!");
@@ -1101,7 +1101,7 @@ void GoblinCamp()
     while (InGoblinCamp)
     {
         TextTyping("<north, search, or inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "north")
         {
             TextTyping("You start heading to the North");
@@ -1209,7 +1209,7 @@ void GoblinCombat()
         Console.WriteLine("Player's Turn");
         TextTyping("What would you like to do?");
         Console.WriteLine("<attack, run>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         bool Responding = true;
         while (Responding)
         {
@@ -1384,7 +1384,7 @@ void OverWorldCombat()
         Console.WriteLine("Player's Turn");
         TextTyping("What would you like to do?");
         Console.WriteLine("<attack, run>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         bool Responding = true;
         while (Responding)
         {
@@ -1618,7 +1618,7 @@ void Inventory()
     TextTyping($"Life Potions: {LifePotion}");
 
     TextTyping("Would you like to see your stats?\n<yes or no>");
-    string response = Console.ReadLine();
+    string? response = Console.ReadLine();
     bool responding = true;
     while(responding){
     if (response == "yes")
@@ -1675,7 +1675,7 @@ void skeleyTalk(){
     int skeRageMeter = 0;
     while (skeRageMeter!=3){
         TextTyping("(1) Hello! \n(2) How are the wife and kids? \n(3) Whats the afterlife like? \n(4) Welp, sleep well");
-        int response = Int32.Parse(Console.ReadLine());
+        int? response = Int32.Parse(Console.ReadLine());
         switch (response){
             case 4:
             Village();
