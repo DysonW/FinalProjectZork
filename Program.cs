@@ -1,4 +1,4 @@
-int level = 1;
+﻿int level = 1;
 int Health = 20;
 bool dungeonKey = false;
 bool searchDungChest = true;
@@ -75,14 +75,7 @@ xpNeeded = xpNeeded + (100 * level);
         }
     }
 
-/*
-    Console.WriteLine("You found the stninky sword and super sword");
-    weaponsInventory.Add("Stinky Sword");
-    weaponsInventory.Add("Super Sword");
-    changeWeaponsEquiped();
-    Console.WriteLine(equipeds);
-    displayWeaponsEquiped();
-*/
+
     //end of the equiping program
 //}
 
