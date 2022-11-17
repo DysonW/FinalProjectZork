@@ -555,12 +555,12 @@ else{
 
 void WonderfulClearing(){
 TextTyping("You have entered this Wonderful Clearing!!");
-TextTyping("There are so many things to do at this clearing that it's impossible to do them all, so we narrowed it down for ya.\nThere is a path to the east, a path to the west, and a path to the North.\nOr You can look around this wonderful clearing");
+TextTyping("There are so many things to do at this clearing that it's impossible to do them all, so we narrowed it down for ya.\nThere is a path to the east, a path to the west, a path to the North.\n and a dark path to the south/n Or You can look around this wonderful clearing");
 bool inClearing3 = true;
 TextTyping("What would you like to do today?");
 while(inClearing3 == true){
-TextTyping("<east, west, north, search, inventory");
-string response = Console.ReadLine();
+TextTyping("<east, west, north, south, search, inventory");
+string? response = Console.ReadLine();
 
 if(response == "west"){
 TextTyping("You start heading down the Western Path.");
@@ -584,11 +584,11 @@ CowLookOut();
 }
 
 if(response == "south"){
-TextTyping("You start heading South!!");
+TextTyping("You head down the scary southern path...");
 inClearing3 = false;
-//DungeonEntrance();
+Console.ReadKey();
+DungeonEntrance();
 }
-
 if(response == "search"){
 TextTyping("As You look around this wonderful clearing, you are dazzled by how wonderful it is. Everyting is soo wonderful that you feel that if you search it, it will ruin it.... that is, everythhing except that rock over there, it's just too ugly for this wonderful clearing.");
 Console.ReadKey();
@@ -959,7 +959,56 @@ void GoblinCamp(){
     }
 }
 
+void DungeonEntrance (){
+TextTyping("You walk toward the clearing\n You see the large enterance to the cow mans lair");
+TextTyping("As you get closer to the dungeon gate you can hear the distant sounds of your wife in the dungeon\n Your wife is closer that you could have ever imagined");
+bool dungeonClear= true;
+while(dungeonClear){
+TextTyping("What would you like to do?\n <Go back, ENTER the dungeon, search, inventory>");
+string? response = Console.ReadLine();
+if (response == "go back"){
+TextTyping("you think that now is not the best time to go charging in to the dungeon, you should probably be more prepared");
+dungeonClear=false;
+WonderfulClearing();
+}
+else if (response=="enter"){
+TextTyping("As you approach the large musty door you see a small key hole.");
+if (dungeonKey==true){
+    TextTyping("you pull out the key you found in the souther clearing.\n You insert the key and hear a large click");
+    TextTyping("The large dungeon door slowly start creaking open revealing a long, dark haLlway\n you gird your loins and start your way in.");
+    dungeonClear=false;
+    //the dungeon ();
+}
+else if (dungeonKey==false){
+    TextTyping("searching your pockets you find a conviently shaped stick that looks like a key\n you insert the stick into the hole.");
+    Console.ReadKey();
+    TextTyping("You twist the stick then...BOOM!! you are launched back into the wondeful clearing with a voice screaming:");
+    TextTyping("BEGONE FALSE KNIGHT! YOU HAVE NOT EARNED THE RIGHT TO ENTER MY LAIR!");
+    Console.ReadKey();
+    dungeonClear=false;
+    WonderfulClearing();
+}
+}
 
+if (response== "search"){
+    //bool looking = true;\
+    TextTyping("you look around this dry, barren enterance \nYou see a rotting skeleton and a jug of milk\n what would you like to search?");
+    TextTyping("<Skeleton or Jug>");
+    response = Console.ReadLine();
+    if (response=="skeleton"){
+        TextTyping("this is a rotting farmer skeleton, you can tell from the straw hat.");
+        TextTyping("He must have been a poor farmer because he has nothing on him");
+    }
+    if (response=="jug"){
+        TextTyping("yup, thats a jug of milk");
+    }
+    if (response=="inventory"){
+        Inventory();
+        Console.ReadKey();
+    }
+}
+}
+}
 
 void CommonSearching(){
 Random search = new Random();
@@ -1075,7 +1124,7 @@ void TextTyping(string Sentence){
     foreach (var character in Sentence)
 {
     Console.Write(character);
-    Thread.Sleep(10);
+    Thread.Sleep(001);
 }
 Console.WriteLine();
 }
