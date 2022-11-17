@@ -29,22 +29,9 @@ xpNeeded = xpNeeded + (100 * level);
 
 
 //Logans Equiping program
-void Equip()
-{
-    List<string> weaponsInventory = new List<string>();
-    string StrongSword = "Strong Sword";
-    string sword = "Sword";
+//void Equip(){
 
-
-    string equipeds = "Bare Hands";
-    weaponsInventory.Add(sword);
-    weaponsInventory.Add(StrongSword);
-    weaponsInventory.Add("Cow Sword");
-    Console.WriteLine(weaponsInventory[1]);
-
-
-
-
+    WeaponsInPossession.Add(Sword);
     string AskQuestion(string question)
     {
         string answer = "";
@@ -56,9 +43,10 @@ void Equip()
     void displayWeaponsEquiped()
     {
         int count = 1;
-        foreach (string equiped in weaponsInventory)
+        TextTyping("Weapons:");
+        foreach ((string equiped, int t) in WeaponsInPossession)
         {
-            TextTyping($"{count}: {equiped}");
+            TextTyping($"{count}: {equiped} ({t} Power)");
             count++;
         }
     }
@@ -71,11 +59,13 @@ void Equip()
         {
             displayWeaponsEquiped();
             String choice = AskQuestion("What sword would you like to equip?");
-            string swaptop = equipeds;
-            equipeds = weaponsInventory[int.Parse(choice) - 1];
-            weaponsInventory[int.Parse(choice) - 1] = swaptop;
+            var swaptop = CurrentWeapon;
+            CurrentWeapon = WeaponsInPossession[int.Parse(choice) - 1];
+            WeaponsInPossession[int.Parse(choice) - 1] = swaptop;
             string done;
-            TextTyping($"You are using the {equipeds} \nAre you ready?");
+            TextTyping($"You are using the {CurrentWeapon.Name} \nAre you ready?<yes or no>");
+        
+            
             done = Console.ReadLine();
             if (done == "yes")
             {
@@ -85,18 +75,16 @@ void Equip()
         }
     }
 
-
-
-    displayWeaponsEquiped();
-
+/*
     Console.WriteLine("You found the stninky sword and super sword");
     weaponsInventory.Add("Stinky Sword");
     weaponsInventory.Add("Super Sword");
     changeWeaponsEquiped();
     Console.WriteLine(equipeds);
     displayWeaponsEquiped();
+*/
     //end of the equiping program
-}
+//}
 
 /*void Equiping()
 {
@@ -1394,9 +1382,21 @@ void CursedSearching()
 void Inventory()
 {
     TextTyping($"Life Potions: {LifePotion}");
-
-    TextTyping("Would you like to see your stats?\n<yes or no>");
+    displayWeaponsEquiped();
+     TextTyping("Would you like to change your weapon?\n<yes or no>");
     string? response = Console.ReadLine();
+    if (response == "yes")
+    {
+        changeWeaponsEquiped();
+    }
+     else if (response == "no")
+        TextTyping("Sounds Good");
+    else
+    {
+        TextTyping("I'm sorry, I can't read that");
+    }
+    TextTyping("Would you like to see your stats?\n<yes or no>");
+    response = Console.ReadLine();
     if (response == "yes")
     {
         TextTyping($"Attack: {Attack}");
@@ -1404,6 +1404,7 @@ void Inventory()
         //TextTyping($"Experience Point: {Experience}/{xpNeeded}");
         TextTyping($"Weapon: {CurrentWeapon.Name}");
         Console.ReadLine();
+        /*
         TextTyping("Would you like to change your weapon?\n<y or n>");
         response = Console.ReadLine();
         if (response == "y")
@@ -1413,7 +1414,7 @@ void Inventory()
         else
         {
             TextTyping("Sorry, can't read that");
-        }
+        }*/
     }
     else if (response == "no")
         TextTyping("Sounds Good");

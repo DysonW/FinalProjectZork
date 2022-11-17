@@ -8,27 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\cardi\\.nuget\\packages\\": {}
+    "/home/logannelson2001/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
+      "projectUniqueName": "/home/logannelson2001/FinalProjectZork/finalprojectzork.csproj",
       "projectName": "finalprojectzork",
-      "projectPath": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\finalprojectzork.csproj",
-      "packagesPath": "C:\\Users\\dyson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\cardi\\Documents\\Final\\FinalProjectZork\\finalprojectzork.csproj",
-      "projectName": "finalprojectzork",
-      "projectPath": "C:\\Users\\cardi\\Documents\\Final\\FinalProjectZork\\finalprojectzork.csproj",
-      "packagesPath": "C:\\Users\\cardi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cardi\\Documents\\Final\\FinalProjectZork\\obj\\",
->>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
+      "projectPath": "/home/logannelson2001/FinalProjectZork/finalprojectzork.csproj",
+      "packagesPath": "/home/logannelson2001/.nuget/packages/",
+      "outputPath": "/home/logannelson2001/FinalProjectZork/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cardi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/logannelson2001/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -67,11 +59,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
->>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -80,7 +68,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\dyson\\cs1400\\Fun\\zork\\FinalProjectZork\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file /home/logannelson2001/FinalProjectZork/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
 }

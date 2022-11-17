@@ -7,8 +7,4 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = finalprojectzork
-<<<<<<< HEAD
-build_property.ProjectDir = c:\Users\dyson\cs1400\Fun\zork\FinalProjectZork\
-=======
-build_property.ProjectDir = c:\Users\cardi\Documents\Final\FinalProjectZork\
->>>>>>> 40115f1369b22aa62924b652198ded3b1d8b8f2e
+build_property.ProjectDir = /home/logannelson2001/FinalProjectZork/
