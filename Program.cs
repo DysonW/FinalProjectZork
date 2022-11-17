@@ -1,4 +1,4 @@
-﻿int level = 1;
+int level = 1;
 int Health = 20;
 bool dungeonKey = false;
 bool searchDungChest = true;
@@ -43,10 +43,6 @@ void Equip()
     Console.WriteLine(weaponsInventory[1]);
 
 
-    List<string> itemsInventory = new List<string>();
-    string smallPotion = "Small Potion";
-    string mediumPotion = "Medium Potion";
-    string bigPotion = "Big Potion";
 
 
     string AskQuestion(string question)
@@ -67,16 +63,6 @@ void Equip()
         }
     }
 
-
-    void displayitemsEquiped()
-    {
-        int count = 1;
-        foreach (string equiped in itemsInventory)
-        {
-            TextTyping($"{count}: {equiped}");
-            count++;
-        }
-    }
 
     void changeWeaponsEquiped()
     {
@@ -100,40 +86,15 @@ void Equip()
     }
 
 
-    void useitem()
-    {
-        bool choosing = true;
-        while (choosing)
-        {
-            displayitemsEquiped();
-            String choice = AskQuestion("What item would you like to use?");
-            //string swaptop = equipeds;
-            equipeds = itemsInventory[int.Parse(choice) - 1];
-            //itemsInventory[int.Parse(choice)-1] = swaptop;
 
-            string done;
-            Console.WriteLine($"You are using the {equipeds} \nAre you Sure?");
-            done = Console.ReadLine();
-            if (done == "yes")
-            {
-                choosing = false;
-                itemsInventory.Remove(equipeds);
-            }
-
-        }
-    }
     displayWeaponsEquiped();
 
     Console.WriteLine("You found the stninky sword and super sword");
-
     weaponsInventory.Add("Stinky Sword");
     weaponsInventory.Add("Super Sword");
-    itemsInventory.AddRange(new string[] { smallPotion, mediumPotion, bigPotion });
     changeWeaponsEquiped();
-    useitem();
     Console.WriteLine(equipeds);
     displayWeaponsEquiped();
-    displayitemsEquiped();
     //end of the equiping program
 }
 
