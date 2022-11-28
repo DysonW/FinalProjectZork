@@ -30,16 +30,7 @@ List<string> weaponsInventory = new List<string>();
 
 
 string equipeds = bareHands.Name;
-weaponsInventory.Add(Sword.Name);
-weaponsInventory.Add(strongSword.Name);
-weaponsInventory.Add(extrodinaryStick.Name);
 
-
-
-List<string> itemsInventory = new List<string>();
-string smallPotion = "Small Potion";
-string mediumPotion = "Medium Potion";
-string bigPotion = "Big Potion";
 
 
 string AskQuestion(string question){
@@ -57,14 +48,6 @@ void displayWeaponsEquiped(){
     }
 }
 
-
-void displayitemsEquiped(){
-    int count = 1;
-    foreach(string equiped in itemsInventory){
-        TextTyping($"{count}: {equiped}");
-        count++;
-    }
-}
 
 void changeWeaponsEquiped(){
     bool choosing = true;
@@ -84,25 +67,7 @@ void changeWeaponsEquiped(){
     }
 }
 
-void useitem(){
-    bool choosing = true;
-    while(choosing){
-        displayitemsEquiped();
-        String choice = AskQuestion("What item would you like to use?");
-        //string swaptop = equipeds;
-        equipeds = itemsInventory[int.Parse(choice)-1];
-        //itemsInventory[int.Parse(choice)-1] = swaptop;
 
-        string done;
-        Console.WriteLine($"You are using the {equipeds} \nAre you Sure?");
-        done = Console.ReadLine();
-        if (done == "yes"){
-            choosing = false;
-            itemsInventory.Remove(equipeds);
-        }
-
-    }
-}
 /*
 displayWeaponsEquiped();
 Console.WriteLine("You found the stinky sword and super sword");
