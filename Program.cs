@@ -695,6 +695,7 @@ void WonderfulClearing()
         }
     }
 }
+
 void dungeonEntrance(){
     TextTyping("You walk down the scary path, and you come face to face with the evil cow mans lair.\n the smell of grass and manure lingers in the air.\n You can feel your wifes presence, you must enter the dungeon to save her");
     TextTyping("You look around the area, there are a few thing laying around but all you can see is a large door");
@@ -727,7 +728,11 @@ void dungeonEntrance(){
     if (choice=="inventory")
     Inventory();
     }
+
 }
+
+
+
 void Clearing4()
 {
     TextTyping("You have entered the normal Clearing!!");
@@ -1409,9 +1414,23 @@ void CursedSearching()
 void Inventory()
 {
     TextTyping($"Life Potions: {LifePotion}");
+         TextTyping("Would you like to use a Life Potion?\n<yes or no>");
+     string? response = Console.ReadLine();
+      if (response == "yes")
+    {
+        Health = 20;
+        LifePotion = LifePotion -1;
+        TextTyping($"Health: {Health}\nLife Potions: {LifePotion}");
+    }
+     else if (response == "no")
+        TextTyping("Okay, stay healthy!");
+    else
+    {
+        TextTyping("I'm sorry, I can't read that");
+    }
     displayWeaponsEquiped();
      TextTyping("Would you like to change your weapon?\n<yes or no>");
-    string? response = Console.ReadLine();
+   response = Console.ReadLine();
     if (response == "yes")
     {
         changeWeaponsEquiped();
