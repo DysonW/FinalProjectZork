@@ -91,12 +91,12 @@ xpNeeded = xpNeeded + (100 * level);
 
 void Village()
 {
-    TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love.\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
+    TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love, and a burning skeleton\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
     Console.ReadKey();
     bool inVillage = true;
     while (inVillage == true)
     {
-        TextTyping("<house, shop, east, search, inventory>");
+        TextTyping("<house, shop, skeleton, east, search, inventory>");
         string? response = Console.ReadLine();
         if (response == "house")
         {
@@ -122,7 +122,9 @@ void Village()
             inVillage = false;
             Clearing1();
         }
-
+        if (response== "skeleton"){
+            skeleyTalk();
+        }
         if (response == "search")
         {
             TextTyping("As You look around the Village, You see a Tree along the North, and the weird Village Cat.");
@@ -607,12 +609,12 @@ void BarrenClearing()
 void WonderfulClearing()
 {
     TextTyping("You have entered this Wonderful Clearing!!");
-    TextTyping("There are so many things to do at this clearing that it's impossible to do them all, so we narrowed it down for ya.\nThere is a path to the east, a path to the west, and a path to the North.\nOr You can look around this wonderful clearing");
+    TextTyping("There are so many things to do at this clearing that it's impossible to do them all, so we narrowed it down for ya.\nThere is a path to the east, a path to the west, a path to the North, and a scary path to the south.\nOr You can look around this wonderful clearing");
     bool inClearing3 = true;
     TextTyping("What would you like to do today?");
     while (inClearing3 == true)
     {
-        TextTyping("<east, west, north, search, inventory");
+        TextTyping("<east, west, north, south, search, inventory");
         string? response = Console.ReadLine();
 
         if (response == "west")
@@ -643,7 +645,7 @@ void WonderfulClearing()
         {
             TextTyping("You start heading South!!");
             inClearing3 = false;
-            //DungeonEntrance();
+            dungeonEntrance();
         }
 
         if (response == "search")
@@ -693,7 +695,39 @@ void WonderfulClearing()
         }
     }
 }
+void dungeonEntrance(){
+    TextTyping("You walk down the scary path, and you come face to face with the evil cow mans lair.\n the smell of grass and manure lingers in the air.\n You can feel your wifes presence, you must enter the dungeon to save her");
+    TextTyping("You look around the area, there are a few thing laying around but all you can see is a large door");
+    bool running = true;
+    while (running){
+    TextTyping("what would you like to do?\n <Door, Run, search, inventory>");
+    string choice = Console.ReadLine();
+    if (choice=="door"){
+    //bean
+    TextTyping("You walk towards the door, you are filled with determination\n As you walk to the door you notice a small key hole");
+    if (dungeonKey==true){
+        TextTyping("");
+    }
+    }
+    if (choice=="run"){
+        TextTyping("You run away from the door screaming in fear");
+        running= false;
+        WonderfulClearing();
+    }
+    if (choice == "search"){
+        TextTyping("You look around for something to search.\n you see a rock and a milk jug.");
+        TextTyping("what would you like to search\n <rock, jug>");
+        choice = Console.ReadLine();
+        if (choice == "rock")
+        TextTyping("yup that is a rock");
+        if (choice == "jug")
+        TextTyping("you approach the jug\nits just an empty milk jug");
 
+    }
+    if (choice=="inventory")
+    Inventory();
+    }
+}
 void Clearing4()
 {
     TextTyping("You have entered the normal Clearing!!");
