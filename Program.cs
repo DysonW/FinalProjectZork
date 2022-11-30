@@ -735,6 +735,7 @@ void dungeonEntrance()
         if (choice == "inventory")
             Inventory();
     }
+
 }
 
 void Clearing4()
@@ -1445,9 +1446,23 @@ void CursedSearching()
 void Inventory()
 {
     TextTyping($"Life Potions: {LifePotion}");
+         TextTyping("Would you like to use a Life Potion?\n<yes or no>");
+     string? response = Console.ReadLine();
+      if (response == "yes")
+    {
+        Health = 20;
+        LifePotion = LifePotion -1;
+        TextTyping($"Health: {Health}\nLife Potions: {LifePotion}");
+    }
+     else if (response == "no")
+        TextTyping("Okay, stay healthy!");
+    else
+    {
+        TextTyping("I'm sorry, I can't read that");
+    }
     displayWeaponsEquiped();
     TextTyping("Would you like to change your weapon?\n<yes or no>");
-    string? response = Console.ReadLine();
+    response = Console.ReadLine();
     if (response == "yes")
     {
         changeWeaponsEquiped();
