@@ -564,15 +564,17 @@ void BarrenClearing()
 
         if (response == "search")
         {
-            TextTyping("As You look around this area, you see about nothing.");
+            TextTyping("As You look around this area, you see about nothing except a lumpy rock.");
             Console.ReadKey();
             bool searching = true;
             TextTyping("What would you like to search?");
 
             while (searching)
             {
-                TextTyping("<NOTHING or nothing>");
-                string? search = Console.ReadLine();
+
+                TextTyping("<NOTHING, nothing, rock>");
+                string search = Console.ReadLine();
+
                 if (search == "NOTHING")
                 {
                     TextTyping("You search the NOTHING!!");
@@ -587,7 +589,9 @@ void BarrenClearing()
                     CommonSearching();
                     searching = false;
                 }
-
+                else if (search=="rock"){
+                    gobGob();
+                }
                 else
                 {
                     TextTyping("You can't search there!");
@@ -1542,8 +1546,65 @@ void skeleyTalk()
     TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
     // add cusrsed apple     
 
+    }
+
+void gobGob(){
+    TextTyping("you approach the lumpy rock");
+    TextTyping("It smells really bad, and seems to be breathing");
+    TextTyping("what would you like to do?\n <run, touch>");
+    string iguess = Console.ReadLine();
+    if (iguess== "run"){
+        TextTyping("you turn to run, but the rock stands up and looks towards you");
+    }
+    if (iguess == "touch"){
+        TextTyping("you reach out to touch the rock, you are suprised to see that the rock... touched you first");
+    }
+    TextTyping("HI. ME AM ARE GOB GOB. WELCOM TO MY CLERING.");
+    TextTyping("WOULD YOU LIK A LARD?/n (he holds out a bucket of lard, you politly push it back)");
+    bool gobtalk = true;
+    while (gobtalk){
+        Console.WriteLine("(1) What are you?/n(2) Have you seen my wife?/n(3) why lard?/n(4) Gud buy??");
+        int respond = int.Parse(Console.ReadLine());
+        switch (respond){
+            case 1:
+            TextTyping("I am a GOB GOB.");
+            break;
+            case 2:
+            TextTyping("yes");
+            break;
+            case 3:
+            TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
+
+During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
+
+By the late 20th century lard began to be considered less healthy than vegetable oils (such as olive and sunflower oil) because of its high content of saturated fatty acids and cholesterol. However, despite its reputation, lard has less saturated fat, more unsaturated fat and less cholesterol than an equal amount of butter by weight.[2] Unhydrogenated lard contains no transfats. It has also been regarded as a 'poverty food'.[6]
+
+Many restaurants in the western nations have eliminated the use of lard in their kitchens because of the health-related dietary restrictions of many of their customers,[citation needed] and religious pork-based dietary restrictions such as Kashrut and Halal mean that some bakers substitute beef tallow for lard.[citation needed]
+
+In the 1990s and early 2000s, however, chefs and bakers rediscovered lard's unique culinary values, leading to a partial rehabilitation of this fat among 'foodies'. Negative publicity about the transfat content of the partially hydrogenated vegetable oils in vegetable shortening has partially driven this trend. Chef and food writer Rick Bayless is a prominent proponent of the virtues of lard for certain types of cooking.[8][9][10][11]
+
+It is also again becoming popular in the United Kingdom among aficionados of traditional British cuisine. This led to a 'lard crisis' in late 2004.[12][13]");
+            break;
+            case 4:
+            TextTyping("*munch* by");
+            break;
+            default:
+            TextTyping("*BELCH*");
+            break;
+        }
+
+    }
+
 }
+
+
+
 
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
 House();
+
+
+
+
+
