@@ -1,5 +1,5 @@
 ﻿int level = 1;
-int Health = 20;
+int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
 
@@ -31,49 +31,51 @@ xpNeeded = xpNeeded + (100 * level);
 //Logans Equiping program
 //void Equip(){
 
-    WeaponsInPossession.Add(Sword);
-    string AskQuestion(string question)
+WeaponsInPossession.Add(Sword);
+string AskQuestion(string question)
+{
+    string? answer = "";
+    Console.WriteLine(question);
+    answer = Console.ReadLine();
+    return answer;
+}
+
+void displayWeaponsEquiped()
+{
+    int count = 1;
+    TextTyping("Weapons:");
+    foreach ((string equiped, int t) in WeaponsInPossession)
     {
-        string answer = "";
-        Console.WriteLine(question);
-        answer = Console.ReadLine();
-        return answer;
+        TextTyping($"{count}: {equiped} ({t} Power)");
+        count++;
     }
+}
 
 
-    void displayWeaponsEquiped()
+void changeWeaponsEquiped()
+{
+    bool choosing = true;
+    while (choosing)
     {
-        int count = 1;
-        TextTyping("Weapons:");
-        foreach ((string equiped, int t) in WeaponsInPossession)
+        displayWeaponsEquiped();
+        String choice = AskQuestion("What sword would you like to equip?");
+        var swaptop = CurrentWeapon;
+        CurrentWeapon = WeaponsInPossession[int.Parse(choice) - 1];
+        WeaponsInPossession[int.Parse(choice) - 1] = swaptop;
+        string? done;
+        TextTyping($"You are using the {CurrentWeapon.Name} \nAre you ready?<yes or no>");
+
+
+        done = Console.ReadLine();
+        if (done == "yes")
         {
-            TextTyping($"{count}: {equiped} ({t} Power)");
-            count++;
+            choosing = false;
         }
+
     }
+}
 
 
-    void changeWeaponsEquiped()
-    {
-        bool choosing = true;
-        while (choosing)
-        {
-            displayWeaponsEquiped();
-            String choice = AskQuestion("What sword would you like to equip?");
-            var swaptop = CurrentWeapon;
-            CurrentWeapon = WeaponsInPossession[int.Parse(choice) - 1];
-            WeaponsInPossession[int.Parse(choice) - 1] = swaptop;
-            string done;
-            TextTyping($"You are using the {CurrentWeapon.Name} \nAre you ready?<yes or no>");
-        
-            
-            done = Console.ReadLine();
-            if (done == "yes")
-            {
-                choosing = false;
-            }
-        }
-    }
 
 
 
@@ -121,7 +123,8 @@ void Village()
             inVillage = false;
             Clearing1();
         }
-        if (response== "skeleton"){
+        if (response == "skeleton")
+        {
             skeleyTalk();
         }
         if (response == "search")
@@ -134,7 +137,7 @@ void Village()
             while (searching)
             {
                 TextTyping("<tree or cat>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "tree")
                 {
                     TextTyping("You begin searching the tree");
@@ -202,7 +205,7 @@ void Shop()
             while (searching)
             {
                 TextTyping("<counter or shelves>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "counter")
                 {
                     TextTyping("You walk to the counter and start searching around");
@@ -212,7 +215,7 @@ void Shop()
                     bool thinking = true;
                     while (thinking)
                     {
-                        string think = Console.ReadLine();
+                        string? think = Console.ReadLine();
                         if (think == "yes")
                         {
                             TextTyping("You pull the lever and you hear the sound of scraping and a secret door opens");
@@ -295,7 +298,7 @@ void House()
             while (searching)
             {
                 TextTyping("<bed or chest>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "bed")
                 {
                     TextTyping("You look under the bed");
@@ -414,7 +417,7 @@ void Clearing1()
             while (searching)
             {
                 TextTyping("<trees or rocks>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "trees")
                 {
                     TextTyping("You search the trees");
@@ -480,7 +483,7 @@ void SusClearing()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "yes")
                 {
                     TextTyping("You open the chest!!");
@@ -568,8 +571,10 @@ void BarrenClearing()
 
             while (searching)
             {
+
                 TextTyping("<NOTHING, nothing, rock>");
                 string search = Console.ReadLine();
+
                 if (search == "NOTHING")
                 {
                     TextTyping("You search the NOTHING!!");
@@ -660,7 +665,7 @@ void WonderfulClearing()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "yes")
                 {
                     TextTyping("You search the Rock!!");
@@ -698,37 +703,43 @@ void WonderfulClearing()
     }
 }
 
-void dungeonEntrance(){
+void dungeonEntrance()
+{
     TextTyping("You walk down the scary path, and you come face to face with the evil cow mans lair.\n the smell of grass and manure lingers in the air.\n You can feel your wifes presence, you must enter the dungeon to save her");
     TextTyping("You look around the area, there are a few thing laying around but all you can see is a large door");
     bool running = true;
-    while (running){
-    TextTyping("what would you like to do?\n <Door, Run, search, inventory>");
-    string choice = Console.ReadLine();
-    if (choice=="door"){
-    //bean
-    TextTyping("You walk towards the door, you are filled with determination\n As you walk to the door you notice a small key hole");
-    if (dungeonKey==true){
-        TextTyping("");
-    }
-    }
-    if (choice=="run"){
-        TextTyping("You run away from the door screaming in fear");
-        running= false;
-        WonderfulClearing();
-    }
-    if (choice == "search"){
-        TextTyping("You look around for something to search.\n you see a rock and a milk jug.");
-        TextTyping("what would you like to search\n <rock, jug>");
-        choice = Console.ReadLine();
-        if (choice == "rock")
-        TextTyping("yup that is a rock");
-        if (choice == "jug")
-        TextTyping("you approach the jug\nits just an empty milk jug");
+    while (running)
+    {
+        TextTyping("what would you like to do?\n <Door, Run, search, inventory>");
+        string? choice = Console.ReadLine();
+        if (choice == "door")
+        {
+            //bean
+            TextTyping("You walk towards the door, you are filled with determination\n As you walk to the door you notice a small key hole");
+            if (dungeonKey == true)
+            {
+                TextTyping("");
+            }
+        }
+        if (choice == "run")
+        {
+            TextTyping("You run away from the door screaming in fear");
+            running = false;
+            WonderfulClearing();
+        }
+        if (choice == "search")
+        {
+            TextTyping("You look around for something to search.\n you see a rock and a milk jug.");
+            TextTyping("what would you like to search\n <rock, jug>");
+            choice = Console.ReadLine();
+            if (choice == "rock")
+                TextTyping("yup that is a rock");
+            if (choice == "jug")
+                TextTyping("you approach the jug\nits just an empty milk jug");
 
-    }
-    if (choice=="inventory")
-    Inventory();
+        }
+        if (choice == "inventory")
+            Inventory();
     }
 
 }
@@ -766,7 +777,7 @@ void Clearing4()
             while (searching)
             {
                 TextTyping("<grass or pebbles>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "grass")
                 {
                     TextTyping("You search the grass!!");
@@ -830,7 +841,7 @@ void AngryClearing()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
                 if (search == "yes")
                 {
                     TextTyping("You slowly open the chest!!");
@@ -924,7 +935,7 @@ void SouthernClearing()
             while (searching)
             {
                 TextTyping("<chest or trees>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "chest" && searchDungChest == false)
                 {
@@ -1000,7 +1011,7 @@ void Clearing6()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1068,9 +1079,9 @@ void GoblinClearing()
 
 void GoblinCamp()
 {
-    TextTyping("You have entered the Camp!!");
-    TextTyping("There seems to be only a few goblins Milling around, the rest must be on a hunting trip.");
     GoblinCombat();
+    TextTyping("You have defeated all of the goblins!!");
+    TextTyping("You took care of the goblins milling around, but the rest must be on a hunting trip.");
     Console.ReadKey();
     TextTyping("You have defeated the Goblins, but more will be here shortly");
     TextTyping("There is the Path that heads North out of this clearing, but you should take a look around.");
@@ -1095,7 +1106,7 @@ void GoblinCamp()
             {
                 TextTyping("<chest or huts>");
 
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
                 if (answer == "chest" && searchGobChest == false)
                 {
                     TextTyping("You open the chest and find...");
@@ -1107,8 +1118,9 @@ void GoblinCamp()
                 {
                     TextTyping("You open the chest and find...");
                     Console.ReadKey();
-                    TextTyping("Some Goblin Armor!!!");
-                    TextTyping("It looks a little grody, but armor is armor, and it is better then nothing");
+                    TextTyping("a stinky sword!!!");
+                    TextTyping("It looks a little grody, but a sword is a sword, and it is better then nothing");
+                    WeaponsInPossession.Add(stinkySword);
                     searching = false;
                     searchGobChest = false;
                 }
@@ -1130,201 +1142,202 @@ void GoblinCamp()
 void GoblinCombat()
 {
     int speed = 1;
-int GobSpeed = 1;
-int GobDamage = 0;
-int PlayerDamage = 0;
-List<int> GobLife = new List<int>();
-Random Number = new Random();
-int NumMonster = Number.Next(1, 6);
-int[] GoblinLife = new int[NumMonster];
-//Giving the Goblins Life
-for (int y = 0; y < GoblinLife.Length; y++)
-{
-    Random Life = new Random();
-    int GobHealth = Life.Next(2, 6);
-    GoblinLife[y] = GobHealth;
-    GobLife.Add(GoblinLife[y]);
-}
-Console.WriteLine($"You enter the Village and see {NumMonster} Goblins!!");
-Rounds();
+    int GobSpeed = 1;
+    int GobDamage = 0;
+    int PlayerDamage = 0;
+    List<int> GobLife = new List<int>();
+    Random Number = new Random();
+    int NumMonster = Number.Next(1, 6);
+    int[] GoblinLife = new int[NumMonster];
+    //Giving the Goblins Life
+    for (int y = 0; y < GoblinLife.Length; y++)
+    {
+        Random Life = new Random();
+        int GobHealth = Life.Next(2, 6);
+        GoblinLife[y] = GobHealth;
+        GobLife.Add(GoblinLife[y]);
+    }
+    Console.WriteLine($"You enter the Village and see {NumMonster} Goblins!!");
+    Rounds();
 
-void Rounds()
-{
-    if (GobLife.Count == 0)
+    void Rounds()
     {
-        Console.WriteLine("You have defeated all of the goblins, Congratulations!");
-        System.Environment.Exit(0);
-    }
-    if (speed < GobSpeed)
-    {
-        PlayerTurn();
-        GoblinTurn();
-        Rounds();
-    }
-    if (speed > GobSpeed)
-    {
-        GoblinTurn();
-        PlayerTurn();
-        Rounds();
-    }
-    else
-    {
-        PlayerTurn();
-        GoblinTurn();
-        Rounds();
-    }
-}
-
-void PlayerTurn()
-{
-    Console.WriteLine("Player's Turn");
-    Console.WriteLine("What would you like to do?");
-    bool Responding = true;
-    while (Responding)
-    {
-    Console.WriteLine("<attack, run>");
-    string? response = Console.ReadLine();
-    if (response == "run")
-    {
-        Running();
-        Responding = false;
-    }
-        if (response == "attack")
+        if (GobLife.Count == 0)
         {
-            Console.WriteLine("Which Goblin would you like to attack?");
-            int x;
-            //Displaying all of the goblins/Monsters
-            for (x = 0; x < GobLife.Count; x++)
+            TextTyping("You have defeated all of the goblins, Congratulations!");
+            GoblinCamp();
+            
+        }
+        if (speed < GobSpeed)
+        {
+            PlayerTurn();
+            GoblinTurn();
+            Rounds();
+        }
+        if (speed > GobSpeed)
+        {
+            GoblinTurn();
+            PlayerTurn();
+            Rounds();
+        }
+        else
+        {
+            PlayerTurn();
+            GoblinTurn();
+            Rounds();
+        }
+    }
+
+    void PlayerTurn()
+    {
+        TextTyping("Player's Turn");
+        TextTyping("What would you like to do?");
+        bool Responding = true;
+        while (Responding)
+        {
+            TextTyping("<attack, run>");
+            string? response = Console.ReadLine();
+            if (response == "run")
             {
-                if (GobLife[x] <= 0)
-                    GobLife.Remove(x);
-                else
-                    Console.WriteLine($"Goblin {x + 1}, {GobLife[x]} Life left ");
+                Running();
+                Responding = false;
             }
-            var Y = Console.ReadLine();
-            int GobPicked = Convert.ToInt32(Y);
-
-            
-                if(GobPicked > 0 && GobPicked < GobLife.Count + 1){
-            
-                if (GobPicked <= GobLife.Count && GobPicked >= 0)
+            if (response == "attack")
+            {
+                TextTyping("Which Goblin would you like to attack?");
+                int x;
+                //Displaying all of the goblins/Monsters
+                for (x = 0; x < GobLife.Count; x++)
                 {
-                    Console.WriteLine("Which type of attack?");
-                    bool answering = true;
-
-                    
-                    while (answering == true)
-                    {
-                        Console.WriteLine("<heavy, medium, light>");
-                        string? answer = Console.ReadLine();
-                        if (answer == "heavy")
-                        {
-                            Console.WriteLine("You strike the goblin with a heavy attack!!");
-                            speed = speed + 5;
-                            PlayerDamage = Attack + 5;
-                            Console.Write($"{PlayerDamage} Dmg {speed} Spd");
-                            answering = false;
-
-                        }
-                        if (answer == "light")
-                        {
-                            Console.WriteLine("You strike the Goblin with a Light Attack");
-                            speed = speed + 1;
-                            PlayerDamage = Attack;
-                            Console.Write($"{PlayerDamage} Dmg {speed} Spd");
-                            answering = false;
-                        }
-                        if (answer == "medium")
-                        {
-                            Console.WriteLine("You strike the Goblin with a Medium Attack!");
-                            speed = speed + 2;
-                            PlayerDamage = Attack + 2;
-                            Console.Write($"{PlayerDamage} Dmg {speed} Spd");
-                            answering = false;
-                        }
-                        else
-                        {
-                            Console.WriteLine("I can't read that.");
-                        }
-
-                    }
-                    GobLife[GobPicked] = GobLife[GobPicked] - PlayerDamage;
-                    if (GobLife[GobPicked] <= 0)
-                    {
-                        Console.WriteLine("You have killed a goblin!!");
-                        GobLife.Remove(GobPicked);
-                        Console.WriteLine(GobLife.Count);
-                    }
-                    if (GobLife[GobPicked] > 0)
-                    {
-                        Console.WriteLine("The Goblin shudders from the strength of your blow, but is still standing");
-                    }
-                    
+                    if (GobLife[x] <= 0)
+                    TextTyping("Dead");
+                    else
+                        TextTyping($"Goblin {x + 1}, {GobLife[x]} Life left ");
                 }
+                var Y = Console.ReadLine();
+                int GobPicked = Convert.ToInt32(Y);
+
+
+                if (GobPicked > 0 && GobPicked < GobLife.Count + 1)
+                {
+
+                    if (GobPicked <= GobLife.Count && GobPicked >= 0)
+                    {
+                        TextTyping("Which type of attack?");
+                        bool answering = true;
+
+
+                        while (answering == true)
+                        {
+                            TextTyping("<heavy, medium, light>");
+                            string? answer = Console.ReadLine();
+                            if (answer == "heavy")
+                            {
+                                TextTyping("You strike the goblin with a heavy attack!!");
+                                speed = speed + 5;
+                                PlayerDamage = Attack + 5;
+                                TextTyping($"{PlayerDamage} Dmg {speed} Spd");
+                                answering = false;
+
+                            }
+                            if (answer == "light")
+                            {
+                                TextTyping("You strike the Goblin with a Light Attack");
+                                speed = speed + 1;
+                                PlayerDamage = Attack;
+                                TextTyping($"{PlayerDamage} Dmg {speed} Spd");
+                                answering = false;
+                            }
+                            if (answer == "medium")
+                            {
+                                TextTyping("You strike the Goblin with a Medium Attack!");
+                                speed = speed + 2;
+                                PlayerDamage = Attack + 2;
+                                TextTyping($"{PlayerDamage} Dmg {speed} Spd");
+                                answering = false;
+                            }
+                            else
+                            {
+                                TextTyping("I can't read that.");
+                            }
+
+                        }
+                        GobLife[GobPicked] = GobLife[GobPicked] - PlayerDamage;
+                        if (GobLife[GobPicked] <= 0)
+                        {
+                            TextTyping("You have killed a goblin!!");
+                            GobLife.Remove(GobPicked);
+                        }
+                        if (GobLife[GobPicked] > 0)
+                        {
+                            TextTyping("The Goblin shudders from the strength of your blow, but is still standing");
+                        }
+
+                    }
                 }
-                
+
 
                 else
                 {
                     Console.WriteLine("You smack the tree really hard.");
                     Console.ReadKey();
                 }
-            
-            Responding = false;
-            
+
+                Responding = false;
+
+            }
+            else
+            {
+                Console.WriteLine("I can't read that");
+            }
+        }
+    }
+
+    void GoblinTurn()
+    {
+        Console.WriteLine("Goblins Turn");
+        GobDamage = 0;
+        for (int x = 0; x < GobLife.Count; x++)
+        {
+            if (GobLife[x] <= 0)
+            {
+                Console.Write("");
+            }
+            else
+            {
+                Random DMG = new Random();
+                int GobDamage1 = DMG.Next(1, 5) + 1;
+                GobDamage = GobDamage1 + GobDamage;
+                Console.WriteLine($"Single Goblin Damage: {GobDamage1}");
+                Console.WriteLine($"Total Damage: {GobDamage}");
+            }
+        }
+        GobSpeed = GobSpeed + 3;
+        Console.ReadLine();
+        Console.WriteLine($"Goblin Damage {GobDamage}");
+        Console.ReadLine();
+        Health = Health - GobDamage;
+        Console.WriteLine($"You have {Health} Life left");
+        if (Health <= 0)
+        {
+            Console.WriteLine("You have Died, Thank you for playiing");
+            System.Environment.Exit(0);
+        }
+    }
+
+    void Running()
+    {
+        Console.WriteLine("You Start running away!! (You Coward)");
+        if (speed < GobSpeed - 3)
+        {
+            Console.WriteLine("You get away safely!!");
+            House();
         }
         else
         {
-            Console.WriteLine("I can't read that");
+            Console.WriteLine("You couldn't get away!!");
         }
     }
-}
-
-void GoblinTurn()
-{
-    Console.WriteLine("Goblins Turn");
-    GobDamage = 0;
-    for (int x = 0; x < GobLife.Count; x++)
-    {
-        if (GobLife[x] <= 0)
-        {
-            Console.Write("");
-        }
-        else
-        {
-            Random DMG = new Random();
-            int GobDamage1 = DMG.Next(1, 5) + 1;
-            GobDamage = GobDamage1 + GobDamage;
-            Console.WriteLine($"Single Goblin Damage: {GobDamage1}");
-            Console.WriteLine($"Total Damage: {GobDamage}");
-        }
-    }
-    GobSpeed = GobSpeed + 3;
-    Console.ReadLine();
-    Console.WriteLine($"Goblin Damage {GobDamage}");
-    Console.ReadLine();
-    Health = Health - GobDamage;
-    Console.WriteLine($"You have {Health} Life left");
-    if (Health <= 0)
-    {
-        Console.WriteLine("You have Died, Thank you for playiing");
-        System.Environment.Exit(0);
-    }
-}
-
-void Running()
-{
-    Console.WriteLine("You Start running away!! (You Coward)");
-    if (speed < GobSpeed - 3)
-    {
-        Console.WriteLine("You get away safely!!");
-        House();
-    }
-    else
-    {
-        Console.WriteLine("You couldn't get away!!");
-    }
-}
 
 }
 
@@ -1454,13 +1467,13 @@ void Inventory()
         TextTyping("I'm sorry, I can't read that");
     }
     displayWeaponsEquiped();
-     TextTyping("Would you like to change your weapon?\n<yes or no>");
-   response = Console.ReadLine();
+    TextTyping("Would you like to change your weapon?\n<yes or no>");
+    response = Console.ReadLine();
     if (response == "yes")
     {
         changeWeaponsEquiped();
     }
-     else if (response == "no")
+    else if (response == "no")
         TextTyping("Sounds Good");
     else
     {
@@ -1505,25 +1518,28 @@ void TextTyping(string Sentence)
         Thread.Sleep(10);
     }
     Console.WriteLine();
-        Console.Beep();
+    Console.Beep();
 
 
 }
 
-void skeleyTalk(){
+void skeleyTalk()
+{
     TextTyping("You walk toward the skeleton, hoping to hear his kind words");
     int skeRageMeter = 0;
-    while (skeRageMeter!=3){
+    while (skeRageMeter != 3)
+    {
         TextTyping("(1) Hello! \n(2) How are the wife and kids? \n(3) Whats the afterlife like? \n(4) Welp, sleep well");
         int response = Int32.Parse(Console.ReadLine());
-        switch (response){
+        switch (response)
+        {
             case 4:
-            Village();
-            break;
+                Village();
+                break;
             default:
-            TextTyping("...");
-            skeRageMeter++;
-            break;
+                TextTyping("...");
+                skeRageMeter++;
+                break;
         }
     }
     TextTyping("UGH DO YOU EVER QUIT! All I want is to peacfully rot in to nothing, BUT NOO THATS NOT POSSIBLE. Some good for nothing squire wants to know how my wife and kids are, there dead thanks for pouring salt onto that wound for me.");
