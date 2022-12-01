@@ -40,6 +40,7 @@ xpNeeded = xpNeeded + (100 * level);
         return answer;
     }
 
+
     void displayWeaponsEquiped()
     {
         int count = 1;
@@ -71,13 +72,11 @@ xpNeeded = xpNeeded + (100 * level);
             {
                 choosing = false;
             }
-
         }
     }
 
 
-    //end of the equiping program
-//}
+
 
 /*void Equiping()
 {
@@ -87,7 +86,6 @@ xpNeeded = xpNeeded + (100 * level);
         TextTyping($"{swords}");
     }
 }*/
-
 
 void Village()
 {
@@ -105,6 +103,7 @@ void Village()
             inVillage = false;
             House();
         }
+
 
 
         if (response == "shop")
@@ -150,6 +149,7 @@ void Village()
                     RareSearching();
                     searching = false;
                 }
+
 
                 else
                 {
