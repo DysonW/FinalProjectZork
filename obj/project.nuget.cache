@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8UptDk5o9N/xtDtVh9pFgyFKdFisjz2jynDsRelXbouMitzlSEYKi9ffbABRb7etJzLjPxK3NAq6mYmHlvP7AA==",
+  "dgSpecHash": "Td3wsW+qn4q0Z2kHi78sfhqHEhC6fjuHFrGUUu7m33Ja9e+5gesJ+j9FJSalYiOxfskIjtvvjiHOhBatWK9Z7Q==",
   "success": true,
-  "projectFilePath": "/home/logannelson2001/FinalProjectZork/finalprojectzork.csproj",
+  "projectFilePath": "C:\\Users\\cardi\\Documents\\final2\\FinalProjectZork\\finalprojectzork.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/logannelson2001/FinalProjectZork/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
