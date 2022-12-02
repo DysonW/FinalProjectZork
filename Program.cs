@@ -1141,6 +1141,7 @@ void GoblinCombat()
     int GobSpeed = 1;
     int GobDamage = 0;
     int PlayerDamage = 0;
+    int Victory = 0;
     List<int> GobLife = new List<int>();
     Random Number = new Random();
     int NumMonster = Number.Next(1, 6);
@@ -1158,7 +1159,7 @@ void GoblinCombat()
 
     void Rounds()
     {
-        if (GobLife.Count == 0)
+        if (Victory == NumMonster)
         {
             TextTyping("You have defeated all of the goblins, Congratulations!");
             GoblinCamp();
@@ -1210,8 +1211,8 @@ void GoblinCombat()
                     else
                         TextTyping($"Goblin {x + 1}, {GobLife[x]} Life left ");
                 }
-                var Y = Console.ReadLine();
-                int GobPicked = Convert.ToInt32(Y);
+                int Y = int.Parse(Console.ReadLine());
+                int GobPicked = Y;
 
 
                 if (GobPicked > 0 && GobPicked < GobLife.Count + 1)
@@ -1262,7 +1263,7 @@ void GoblinCombat()
                         if (GobLife[GobPicked] <= 0)
                         {
                             TextTyping("You have killed a goblin!!");
-                            GobLife.Remove(GobPicked);
+                        Victory++;
                         }
                         if (GobLife[GobPicked] > 0)
                         {
