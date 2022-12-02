@@ -1197,9 +1197,8 @@ void GoblinCombat()
                     else
                         Console.WriteLine($"Goblin {x + 1}, {GobLife[x]} Life left ");
                 }
-                Console.ReadLine();
-                TextTyping("(Type the Number)");
-                int GobPicked = int.Parse(Console.ReadLine()) + 1;
+                int Y = int.Parse(Console.ReadLine());
+                int GobPicked = Y;
 
 
                 if (GobPicked > 0 && GobPicked < GobLife.Count + 1)
@@ -1249,9 +1248,8 @@ void GoblinCombat()
                         GobLife[GobPicked] = GobLife[GobPicked] - PlayerDamage;
                         if (GobLife[GobPicked] <= 0)
                         {
-                            Console.WriteLine("You have killed a goblin!!");
-                            GobLife.Remove(GobPicked);
-                            Console.WriteLine(GobLife.Count);
+                            TextTyping("You have killed a goblin!!");
+                        Victory++;
                         }
                         if (GobLife[GobPicked] > 0)
                         {
