@@ -2,7 +2,7 @@
 int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
-
+bool dunProlouge= false;
 (string Name, int Power) bareHands = ("Bare Hands", 1);
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
@@ -718,7 +718,16 @@ void dungeonEntrance()
             TextTyping("You walk towards the door, you are filled with determination\n As you walk to the door you notice a small key hole");
             if (dungeonKey == true)
             {
-                TextTyping("");
+                TextTyping("You reach in to your pocket and pull out the key you found in the southern clearing, it fits perfectly in to the hole and the door creeks open");
+                running = false;
+                dunProlouge=true;
+                Room1();
+            }
+            else{
+                TextTyping("you shove your sword into the key hole hoping to jam the door open... it didn't work. The suddenly yells 'BEGON FALSE KNIGHT,YOU ARE NOT RESDY TO FIGHT THE EVIL COW MAN!'");
+                TextTyping("He yells so loud tha the blows you all the way back to the wonderful clearing.");
+                running = false;
+                WonderfulClearing();
             }
         }
         if (choice == "run")
@@ -1605,6 +1614,12 @@ TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has
 House();
 
 
+//dungeon!
 
+void Room1(){
+    if (dunProlouge==true){
+        TextTyping("");
+    }
+}
 
 
