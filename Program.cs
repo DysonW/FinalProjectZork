@@ -1496,6 +1496,213 @@ void Inventory()
 
 }
 
+void DungeonRoom4()
+{
+    TextTyping("You enter a barely lit room, it's hard to see anything!");
+    Console.ReadKey();
+    TextTyping("You can just make out that there's something in the corner of the room but can't quite tell what it is...");
+    bool inDungeonRoom4 = true;
+    TextTyping("What would you like to do?");
+    while (inDungeonRoom4)
+    {
+        TextTyping("<north, east, search, or inventory");
+        string? response = Console.ReadLine();
+        if (response == "north")
+        {
+            TextTyping("You begin heading north!!");
+            inDungeonRoom4 = false;
+            //dRoom1();
+        }
+        if (response == "east")
+        {
+            TextTyping("You begin heading east!!");
+            inDungeonRoom4 = false;
+            DungeonRoom5();
+        }
+
+        if (response == "search")
+        {
+            TextTyping("You look around but the only thing that merits investigation is that corner...");
+            bool searching = true;
+            TextTyping("Would you like to search the corner?");
+            while (searching)
+            {
+                TextTyping("<yes or no>");
+                string answer = Console.ReadLine();
+
+                if (answer == "yes")
+                {
+                    TextTyping("You search the corner. Out jumps a goblin!! It appears that he has a necklace that says...\"GibGib\"?");
+                    //pls add gob
+                    TextTyping("Add a Goblin to fight here");
+                    searching = false;
+                }
+
+                if (answer == "no")
+                {
+                    TextTyping("You don't search the corner :(");
+                    searching = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+        if (response == "inventory")
+        {
+            Inventory();
+        }
+
+        else
+        {
+            TextTyping("What would you like to do?");
+        }
+    }
+}
+
+void DungeonRoom5()
+{
+    TextTyping("You confidently walk into the room. You see two small figures in the distance, but as you get closer they grow bigger...");
+    Console.ReadKey();
+    TextTyping("You are now facing two very big Goblins!!");
+    bool inDungeonRoom5 = true;
+    TextTyping("What would you like to do?");
+    while (inDungeonRoom5)
+    {
+        //Put in two big goblins to fight here
+        TextTyping("<north, east, south, west, search, or inventory");
+        string? response = Console.ReadLine();
+        if (response == "north")
+        {
+            TextTyping("You begin heading north!!");
+            inDungeonRoom5 = false;
+            //dRoom2();
+        }
+        if (response == "east")
+        {
+            TextTyping("You begin heading east!!");
+            inDungeonRoom5 = false;
+            DungeonRoom6();
+        }
+        if (response == "west")
+        {
+            TextTyping("You begin heading west!!");
+            inDungeonRoom5 = false;
+            DungeonRoom4();
+        }
+        if (response == "south")
+        {
+            TextTyping("You begin heading south, there's a big door...with a face?");
+            inDungeonRoom5 = false;
+            //FaceDoor();
+            //make a function that requires the solved puzzle to enter the door
+        }
+
+        if (response == "search")
+        {
+            TextTyping("");
+            bool searching = true;
+            TextTyping("Would you like to search the corner?");
+            while (searching)
+            {
+                TextTyping("<yes or no>");
+                string answer = Console.ReadLine();
+
+                if (answer == "yes")
+                {
+                    TextTyping("There's nothing here.");
+                    searching = false;
+                    
+                }
+
+                if (answer == "no")
+                {
+                    TextTyping("You don't search the corner :(");
+                    searching = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+        if (response == "inventory")
+        {
+            Inventory();
+        }
+
+        else
+        {
+            TextTyping("What would you like to do?");
+        }
+    }
+}
+
+void DungeonRoom6()
+{
+    TextTyping("You are in a big wide open clearing in the dungeon");
+    Console.ReadKey();
+    TextTyping("");
+    bool inDungeonRoom6 = true;
+    TextTyping("What would you like to do?");
+    while (inDungeonRoom6)
+    {
+        TextTyping("<north, west, search, or inventory");
+        string? response = Console.ReadLine();
+        if (response == "north")
+        {
+            TextTyping("You begin heading north!!");
+            inDungeonRoom6 = false;
+            //dRoom3();
+        }
+        if (response == "west")
+        {
+            TextTyping("You begin heading west!!");
+            inDungeonRoom6 = false;
+            DungeonRoom5();
+        }
+
+        if (response == "search")
+        {
+            TextTyping("You see a big pile of rocks, but there's an odd shape in the middle.");
+            bool searching = true;
+            TextTyping("Would you like to search the rocks?");
+            while (searching)
+            {
+                TextTyping("<yes or no>");
+                string answer = Console.ReadLine();
+
+                if (answer == "yes")
+                {
+                    TextTyping("You search the pile of rocks. You find a Life Potion!");
+                    LifePotion = LifePotion+1;
+                    searching = false;
+                    
+                }
+
+                if (answer == "no")
+                {
+                    TextTyping("You don't search the rocks :(");
+                    searching = false;
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+        if (response == "inventory")
+        {
+            Inventory();
+        }
+
+        else
+        {
+            TextTyping("What would you like to do?");
+        }
+    }
+}
 
 void TextTyping(string Sentence)
 {
