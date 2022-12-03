@@ -574,7 +574,8 @@ void BarrenClearing()
                     CommonSearching();
                     searching = false;
                 }
-                else if (search=="rock"){
+                else if (search == "rock")
+                {
                     gobGob();
                 }
                 else
@@ -1221,6 +1222,7 @@ void GoblinCombat()
                                 PlayerDamage = Attack + 5;
                                 Console.Write($"{PlayerDamage} Dmg {speed} Spd");
                                 answering = false;
+                                Responding = false;
 
                             }
                             if (answer == "light")
@@ -1238,6 +1240,7 @@ void GoblinCombat()
                                 PlayerDamage = Attack + 2;
                                 Console.Write($"{PlayerDamage} Dmg {speed} Spd");
                                 answering = false;
+                                Responding = false;
                             }
                             else
                             {
@@ -1249,11 +1252,14 @@ void GoblinCombat()
                         if (GobLife[GobPicked] <= 0)
                         {
                             TextTyping("You have killed a goblin!!");
-                        Victory++;
+                            Victory++;
+                            Responding = false;
                         }
-                        if (GobLife[GobPicked] > 0)
+                        else
                         {
                             Console.WriteLine("The Goblin shudders from the strength of your blow, but is still standing");
+                            Responding = false;
+
                         }
 
                     }
@@ -1492,6 +1498,144 @@ void Inventory()
 
 }
 
+void SingleGoblinCombat()
+{
+    int speed = 0;
+    int GobSpeed = 0;
+    int goblinAttk = 3;
+    bool Living = true;
+    Random Number = new Random();
+    int GoblinLife = Number.Next(1, 25);
+    if (GoblinLife <= 5)
+    {
+        TextTyping("The Goblin is very sickly, and can probably be taken down with one blow, but maybe coughing on them would be more humane");
+        goblinAttk = 1;
+    }
+    if (GoblinLife > 5 && GoblinLife <= 10)
+    {
+        TextTyping("The Goblin is a youth, but healthy, good luck.");
+    }
+    if (GoblinLife == 25)
+    {
+        TextTyping("Oh NO!!! You have encountered a Goblin Cheif, he is 7 feet tall 300 pounds of solid muscle, with his moms skull around his neck and wears nothing but a loin cloth\nNot only this, but his stench can knock out a Dragon.");
+        GoblinLife = 50;
+        goblinAttk = 10;
+    }
+    Rounds();
+
+    void Rounds()
+    {
+        if (GoblinLife <= 0)
+        {
+            Living = false;
+            Console.WriteLine("You have defeated the Goblin!");
+        }
+        while (Living)
+        {
+
+            if (speed < GobSpeed)
+            {
+                PlayerTurn();
+                GoblinTurn();
+                Rounds();
+            }
+            if (speed > GobSpeed)
+            {
+                GoblinTurn();
+                PlayerTurn();
+                Rounds();
+            }
+            else
+            {
+                PlayerTurn();
+                GoblinTurn();
+                Rounds();
+            }
+        }
+    }
+
+    void PlayerTurn()
+    {
+        TextTyping("What would you like to do?");
+        bool Responding = true;
+        while (Responding)
+        {
+            TextTyping("1) Attack\n2) Run");
+            string? response = Console.ReadLine();
+            if (response == "1")
+            {
+                int PlayerDMG = 0;
+                Responding = false;
+                TextTyping("Which type of attack would you like to perform?");
+                bool choosing = true;
+                while (choosing)
+                {
+                    TextTyping("<light, normal, heavy>");
+                    string? answer = Console.ReadLine();
+                    if (answer == "light")
+                    {
+                        choosing = false;
+                        PlayerDMG = Attack + 2;
+                        speed = speed + 3;
+                        TextTyping($"You hit the Goblin with a light attack dealing {PlayerDMG} Damage");
+                    }
+                    if (answer == "normal")
+                    {
+                        choosing = false;
+                        PlayerDMG = Attack + 3;
+                        speed = speed + 5;
+                        TextTyping($"You hit the Goblin with a normal attack dealing {PlayerDMG} Damage");
+                    }
+                    if (answer == "heavy")
+                    {
+                        choosing = false;
+                        PlayerDMG = Attack + 8;
+                        speed = speed + 8;
+                        TextTyping($"You hit the Goblin with a heavy attack dealing {PlayerDMG} Damage");
+                    }
+                    else
+                    {
+                        TextTyping("I can't read that");
+                    }
+                }
+                GoblinLife = GoblinLife - PlayerDMG;
+
+            }
+            if(response == "run"){
+                if(speed <= GobSpeed - 1){
+                    TextTyping("You got away safely");
+                    House();
+                }
+                else{
+                    TextTyping("You couldn't get away!");
+                    Responding = false;
+                    Living = false;
+                }
+            }
+            else{
+                TextTyping("What would you like to do?");
+            }
+        }
+    }
+    void GoblinTurn()
+    {
+        Random GobDmg = new Random();
+        int GobAttck = GobDmg.Next(1, 5) + goblinAttk;
+        Random Hit = new Random();
+        int Success = Hit.Next(1, 2);
+        if (Success == 1)
+            TextTyping("The Goblin Missed you");
+        else
+        {
+            TextTyping($"The Goblin smacked you for {GobAttck} Damage");
+            Health = Health - GobAttck;
+            Console.ReadLine();
+            TextTyping($"You have {Health} Left");
+            GobSpeed = GobSpeed + 5;
+        }
+    }
+
+}
 
 void TextTyping(string Sentence)
 {
@@ -1529,34 +1673,39 @@ void skeleyTalk()
     TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
     // add cusrsed apple     
 
-    }
+}
 
-void gobGob(){
+void gobGob()
+{
     TextTyping("you approach the lumpy rock");
     TextTyping("It smells really bad, and seems to be breathing");
     TextTyping("what would you like to do?\n <run, touch>");
     string iguess = Console.ReadLine();
-    if (iguess== "run"){
+    if (iguess == "run")
+    {
         TextTyping("you turn to run, but the rock stands up and looks towards you");
     }
-    if (iguess == "touch"){
+    if (iguess == "touch")
+    {
         TextTyping("you reach out to touch the rock, you are suprised to see that the rock... touched you first");
     }
     TextTyping("HI. ME AM ARE GOB GOB. WELCOM TO MY CLERING.");
     TextTyping("WOULD YOU LIK A LARD?/n (he holds out a bucket of lard, you politly push it back)");
     bool gobtalk = true;
-    while (gobtalk){
+    while (gobtalk)
+    {
         Console.WriteLine("(1) What are you?/n(2) Have you seen my wife?/n(3) why lard?/n(4) Gud buy??");
         int respond = int.Parse(Console.ReadLine());
-        switch (respond){
+        switch (respond)
+        {
             case 1:
-            TextTyping("I am a GOB GOB.");
-            break;
+                TextTyping("I am a GOB GOB.");
+                break;
             case 2:
-            TextTyping("yes");
-            break;
+                TextTyping("yes");
+                break;
             case 3:
-            TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
+                TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
 
 During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
 
@@ -1567,13 +1716,13 @@ Many restaurants in the western nations have eliminated the use of lard in their
 In the 1990s and early 2000s, however, chefs and bakers rediscovered lard's unique culinary values, leading to a partial rehabilitation of this fat among 'foodies'. Negative publicity about the transfat content of the partially hydrogenated vegetable oils in vegetable shortening has partially driven this trend. Chef and food writer Rick Bayless is a prominent proponent of the virtues of lard for certain types of cooking.[8][9][10][11]
 
 It is also again becoming popular in the United Kingdom among aficionados of traditional British cuisine. This led to a 'lard crisis' in late 2004.[12][13]");
-            break;
+                break;
             case 4:
-            TextTyping("*munch* by");
-            break;
+                TextTyping("*munch* by");
+                break;
             default:
-            TextTyping("*BELCH*");
-            break;
+                TextTyping("*BELCH*");
+                break;
         }
 
     }
@@ -1585,6 +1734,7 @@ It is also again becoming popular in the United Kingdom among aficionados of tra
 
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
+SingleGoblinCombat();
 House();
 
 
