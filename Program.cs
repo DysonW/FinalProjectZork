@@ -1704,6 +1704,36 @@ void DungeonRoom6()
     }
 }
 
+void DungeonBossRoom()
+{
+    TextTyping("You enter the final room of the dungeon. A chill runs down your back as you realise it's getting colder with every step.");
+    TextTyping("You enter a big room lit by candles but it's oddly bright since all the light is bouncing off of the gold hoardes that cover the floor. In the center of the room is a big throne with the leader sitting on it.");
+    Console.ReadKey();
+    TextTyping("You are now facing Trevor, the menacingly beastly Cow-Man. His face is snarled and he wears nothing but a gucci loin cloth and a deadly glare.\nAs you look around his throne room, among all the gold, in the back corner is a cage. Inside the cage is the reason you are here.");
+    TextTyping("Clarabell looks at you and a spark of hope enters her eyes as she recognizes you. Her only love, the one she's counted on since ever since you two met all those years ago.");
+    TextTyping("A fire ignites in your heart as you know, one way or the other this will all be over soon. Trever stands to his full height, a staggering 4 feet. You approach him screaming Clarabells' name and the battle begins");
+    Console.ReadKey();
+    bool inDungeonBossRoom = true;
+    
+    while (inDungeonBossRoom)
+    {
+        //Put in the boss (Trevor) to fight here
+
+
+    //if Trevor is defeated
+        WinGame();
+    }
+}
+void WinGame()
+{
+    TextTyping("You have slain Trevor the evil Cow Man!! Congratulations, you run to the love of your life Clarabell. She tells you the key to her cage is on the throne. You go grab the key and then let Clarabell out of her awfully beautiful cage.");
+    TextTyping("The two of you return home hand in hand hoping to live the rest of your lives in peace. Trying to forget Trevor and all that has happened. On the plus side, Clarabell comments on how much stronger you look now! You vow you will always keep her safe as the two of you walk back into your house.");
+    TextTyping("It's all over now. Everthing is peaceful, when suddenly your best friend bursts into your house and tells you his wife has gone missing!! There's a sinking feeling in your gut, but it couldn't be. To ease the feeling you go and check the dungeon to make sure. Your worst dream has come true, you must not have finished Trevor off, because as you enter the throne room his body is nowhere to be found...");
+    TextTyping("         G  A  M  E");
+    TextTyping("         O  V  E  R");
+    
+}
+
 void TextTyping(string Sentence)
 {
     foreach (var character in Sentence)
@@ -1741,3 +1771,4 @@ void skeleyTalk(){
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
 House();
+
