@@ -447,7 +447,7 @@ void Clearing1()
         }
     }
 }
-
+//Best Clearing
 void SusClearing()
 {
     TextTyping("As you enter this clearing, you you notice it looks awfully suspicious.");
