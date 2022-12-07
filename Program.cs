@@ -1671,7 +1671,7 @@ void DungeonRoom4()
         {
             TextTyping("You begin heading north!!");
             inDungeonRoom4 = false;
-            //dRoom1();
+            dRoom1();
         }
         if (response == "east")
         {
@@ -1758,7 +1758,7 @@ void DungeonRoom5()
         {
             TextTyping("You begin heading north!!");
             inDungeonRoom5 = false;
-            //dRoom2();
+            DungeonRoom2();
         }
         if (response == "east")
         {
@@ -1834,7 +1834,7 @@ void DungeonRoom6()
         {
             TextTyping("You begin heading north!!");
             inDungeonRoom6 = false;
-            //dRoom3();
+            Dungeonroom3();
         }
         if (response == "west")
         {
@@ -2203,7 +2203,7 @@ void BossFight(){
 }
 
 
-//dungeon!
+
 
 void dRoom1()
 {
@@ -2357,6 +2357,5 @@ while(rom3){
 
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
-SingleGoblinCombat();
 House();
 
