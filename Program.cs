@@ -1644,7 +1644,7 @@ void SingleGoblinCombat()
         }
     }
 }
-
+bool gibgibfought = false;
 void DungeonRoom4()
 {
     TextTyping("You enter a barely lit room, it's hard to see anything!");
@@ -1681,9 +1681,16 @@ void DungeonRoom4()
 
                 if (answer == "yes")
                 {
+                    if(gibgibfought==false){
                     TextTyping("You search the corner. Out jumps a goblin!! It appears that he has a necklace that says...\"GibGib\"?");
-                    //pls add gob
-                    TextTyping("Add a Goblin to fight here");
+                    SingleGoblinCombat();
+                    TextTyping("It appears that GibGib dropped some cow teeth after he let go his final breath.");
+                    cowTeeth++;
+                    gibgibfought=true;
+                    }
+                    else if(gibgibfought==true){
+                        TextTyping("There's nothing here besides the remains of poor old GibGib. You start to feel shame and leave");
+                    }
                     searching = false;
                 }
 
@@ -1709,17 +1716,31 @@ void DungeonRoom4()
         }
     }
 }
-
+bool fought = false;
 void DungeonRoom5()
 {
-    TextTyping("You confidently walk into the room. You see two small figures in the distance, but as you get closer they grow bigger...");
-    Console.ReadKey();
-    TextTyping("You are now facing two very big Goblins!!");
+    if (fought == true){
+            TextTyping("You enter the room and see the corpses of the giant goblins laying right where you left them.");
+    }   
+    
     bool inDungeonRoom5 = true;
+    
     TextTyping("What would you like to do?");
     while (inDungeonRoom5)
     {
-        //Put in two big goblins to fight here
+        
+        
+        
+        if (fought == false){
+            TextTyping("You confidently walk into the room. You see two small figures in the distance, but as you get closer they grow bigger...");
+            Console.ReadKey();
+            TextTyping("You are now facing two very big Goblins!!");
+            SingleGoblinCombat();
+            SingleGoblinCombat();
+            cowTeeth++;
+            TextTyping("After defeating those two very large goblins, you notice they dropped some cow teeth and you pick them up!");
+            fought = true;
+        }
         TextTyping("<north, east, south, west, search, or inventory");
         string? response = Console.ReadLine();
         if (response == "north")
@@ -1744,8 +1765,8 @@ void DungeonRoom5()
         {
             TextTyping("You begin heading south, there's a big door...with a face?");
             inDungeonRoom5 = false;
-            //FaceDoor();
-            //make a function that requires the solved puzzle to enter the door
+            FaceDoor();
+            
         }
 
         if (response == "search")
@@ -1792,7 +1813,6 @@ void DungeonRoom6()
 {
     TextTyping("You are in a big wide open clearing in the dungeon");
     Console.ReadKey();
-    TextTyping("");
     bool inDungeonRoom6 = true;
     TextTyping("What would you like to do?");
     while (inDungeonRoom6)
@@ -1824,8 +1844,8 @@ void DungeonRoom6()
 
                 if (answer == "yes")
                 {
-                    TextTyping("You search the pile of rocks. You find a Life Potion!");
-                    LifePotion = LifePotion+1;
+                    TextTyping("You search the pile of rocks. You find cow teeth!");
+                    cowTeeth++;
                     searching = false;
                     
                 }
