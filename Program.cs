@@ -1677,7 +1677,7 @@ void DungeonRoom4()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1756,7 +1756,7 @@ void DungeonRoom5()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1820,7 +1820,7 @@ void DungeonRoom6()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1939,7 +1939,7 @@ void gobGob()
     TextTyping("you approach the lumpy rock");
     TextTyping("It smells really bad, and seems to be breathing");
     TextTyping("what would you like to do?\n <run, touch>");
-    string iguess = Console.ReadLine();
+    string? iguess = Console.ReadLine();
     if (iguess == "run")
     {
         TextTyping("you turn to run, but the rock stands up and looks towards you");
