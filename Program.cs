@@ -20,12 +20,14 @@ int wisdom = 1;
 int LifePotion = 0;
 int Attack = CurrentWeapon.Power + level;
 
+int cowTeeth = 0;
 int Coins = 0;
 bool searchGobChest = true;
 int MaxLife = 50;
 int Experience = 0;
 int xpNeeded = 0;
 xpNeeded = xpNeeded + (100 * level);
+
 
 
 WeaponsInPossession.Add(Sword);
@@ -1849,6 +1851,21 @@ void DungeonRoom6()
             TextTyping("What would you like to do?");
         }
     }
+}
+
+void FaceDoor()
+{
+    if (cowTeeth != 6){
+        TextTyping("You only have "+cowTeeth+" cow teeth but you need 6. I will not open until you provide my TEETH!");
+        DungeonRoom5(); 
+    }
+    else{
+        TextTyping("You enter each of the 6 cow teeth into the empty slots. The mouth of the face door begins to widen until it's gapping. Before you know it, the mouth swallows you whole!");
+        TextTyping("You slide down a cave in the dark and drop out of the cieling. You look around and realize there's only one way to go, so you start to walk.");
+        Console.ReadKey();
+        DungeonBossRoom();
+    }
+    
 }
 
 void DungeonBossRoom()
