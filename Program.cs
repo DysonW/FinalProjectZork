@@ -2,6 +2,7 @@
 int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
+bool cowtooth = false;
 
 (string Name, int Power) bareHands = ("Bare Hands", 1);
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
@@ -1840,8 +1841,14 @@ void DungeonRoom6()
 
                 if (answer == "yes")
                 {
+                    if(cowtooth ==false){
                     TextTyping("You search the pile of rocks. You find cow teeth!");
                     cowTeeth++;
+                    cowtooth= true;
+                    }
+                    else{
+                        TextTyping("There is nothing left to find.");
+                    }
                     searching = false;
                     
                 }
@@ -1871,7 +1878,7 @@ void DungeonRoom6()
 
 void FaceDoor()
 {
-    if (cowTeeth != 6){
+    if (cowTeeth >= 6){
         TextTyping("You only have "+cowTeeth+" cow teeth but you need 6. I will not open until you provide my TEETH!");
         DungeonRoom5(); 
     }
