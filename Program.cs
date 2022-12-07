@@ -2,8 +2,9 @@
 int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
-bool cowtooth = false;
 
+bool dunProlouge = false;
+bool cowtooth = false;
 (string Name, int Power) bareHands = ("Bare Hands", 1);
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
@@ -710,7 +711,17 @@ void dungeonEntrance()
             TextTyping("You walk towards the door, you are filled with determination\n As you walk to the door you notice a small key hole");
             if (dungeonKey == true)
             {
-                TextTyping("");
+                TextTyping("You reach in to your pocket and pull out the key you found in the southern clearing, it fits perfectly in to the hole and the door creeks open");
+                running = false;
+                dunProlouge = true;
+                dRoom1();
+            }
+            else
+            {
+                TextTyping("you shove your sword into the key hole hoping to jam the door open... it didn't work. The suddenly yells 'BEGON FALSE KNIGHT,YOU ARE NOT RESDY TO FIGHT THE EVIL COW MAN!'");
+                TextTyping("He yells so loud tha the blows you all the way back to the wonderful clearing.");
+                running = false;
+                WonderfulClearing();
             }
         }
         if (choice == "run")
@@ -1158,6 +1169,7 @@ void GoblinCombat()
         {
             Console.WriteLine("You have defeated all of the goblins, Congratulations!");
             System.Environment.Exit(0);
+
         }
         if (speed < GobSpeed)
         {
@@ -1200,7 +1212,9 @@ void GoblinCombat()
                 for (x = 0; x < GobLife.Count; x++)
                 {
                     if (GobLife[x] <= 0)
+
                         GobLife.Remove(x);
+
                     else
                         Console.WriteLine($"Goblin {x + 1}, {GobLife[x]} Life left ");
                 }
@@ -2189,7 +2203,157 @@ void BossFight(){
 }
 
 
+//dungeon!
 
+void dRoom1()
+{
+    if (dunProlouge == true)
+    {
+        TextTyping("you enter the dungeon. The smell of cow corupts the air. the walls and made from stone bricks and are covered with moss.\n the dimmly lit hallway is only barely visible from the door.\n You enter the cow mans dungeon");
+    }
+    bool ROM1 = true;
+    while (ROM1)
+    {
+        TextTyping("You enter the First room, there isnt much to see in here. you see a path to the south and a east.");
+        TextTyping("What would you like to do ?\n <South, East, Search, Inventory>");
+        string response = Console.ReadLine();
+        if (response == "south")
+        {
+            ROM1 = false;
+            //DungeonRoom4
+        }
+        if (response == "east")
+        {
+            TextTyping("You enter the room to he east!");
+            ROM1 = false;
+            DungeonRoom2();
+        }
+        if (response == "search")
+        {
+            TextTyping("You desperatly look around the room for something to search.\nAll you find is an empty pile of bones");
+            TextTyping("Suddenly the pile of bones started started rattling.\nA brave goblin cultist leaps from the pile, daggar out and ready to kill! ");
+            //insert goblin here 
+            // add a tooph
+        }
+        if (response == "inventory")
+        {
+            Inventory();
+        }
+
+    }
+}
+
+void DungeonRoom2()
+{
+    bool ROM2 = true;
+    TextTyping("You enter the room and see a kitchen. Equiped with a fridge, stove, and a window over the sink (for fire safety)");
+    TextTyping("You see a path to the east, west, and south. You also smell something really good cooking.");
+    while (ROM2)
+    {
+        TextTyping("What would you like to do?\n <East, West, South, Seach, Inventory>");
+        string response = Console.ReadLine();
+        if (response == "east")
+        {
+            TextTyping("You enter the room to the east");
+            ROM2 = false;
+            Dungeonroom3();
+        }
+        if (response == "west")
+        {
+            TextTyping("You enter the room to the west");
+            ROM2 = false;
+            dRoom1();
+        }
+        if (response == "south")
+        {
+            TextTyping("You enter the room to the south.");
+            ROM2 = false;
+            //Room 5
+        }
+        if (response == "search")
+        {
+            bool searching = true;
+            bool theSpoon = false;
+            TextTyping("You look around the room, you see a pot of stew, a suspicious pile of dirt, and a spoon");
+            while (searching)
+            {
+                TextTyping("What would you like to search?\n<Stew, Dirt, spoon, exit>");
+                response = Console.ReadLine();
+                if (response == "stew")
+                {
+                    TextTyping("You approach the stew, it smells good! Would you like to have some stew?\n<Y or N>");
+                    string soup = Console.ReadLine();
+                    if (soup == "y" && theSpoon == true)
+                    {
+                        TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
+                        //stew goblin
+                        Health=Health+5;
+                    }
+                    if (soup == "y" && theSpoon != true)
+                    {
+                        TextTyping("You reach for some stew, and burn your hand trying to grab some. Stew is hot, maybe if you had a spoon you wouldn't burn your hand");
+                        Health=Health-5;
+                    }
+                    if (soup == "n")
+                    {
+                        TextTyping("You decide that your not hungry and walk away.");
+                    }
+                }
+                if (response=="dirt"){
+                    TextTyping("you look through the dirt and find..........dirt!");
+                }
+                if (response == "spoon"){
+                    TextTyping("you cautiously approach the spoon. You grab the spoon thinking its trapped, YOU GOT THE SPOON!");
+                    theSpoon=true; 
+                }
+                if (response == "exit"){
+                    searching=false;
+                }
+
+            }
+        }
+        if (response == "inventory"){
+            Inventory();
+        }
+    }
+}
+void Dungeonroom3(){
+bool rom3 = true;
+TextTyping("you enter the goblin DayCare! it has a suprising lack of children.");
+TextTyping("You see a path to the south and to the east. you also see a wide varity of children toys, as well as a breathing rock.");
+while(rom3){
+    TextTyping("what would you like to do?\n<east, south, search, invertory");
+    string response = Console.ReadLine();
+    if (response == "east")
+        {
+            TextTyping("You enter the room to the east");
+            rom3 = false;
+            DungeonRoom2();
+        }
+        if (response == "south")
+        {
+            TextTyping("You enter the room to the south");
+            rom3 = false;
+            //DungeonRoom6();
+        }
+        if (response=="search"){
+            TextTyping("You look around the room. You see a box of legos, a pile of balls, and a rock\nWhat would you like to search?\n<legos, balls, rock>");
+            response=Console.ReadLine();
+            if (response=="legos"){
+                TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
+                //goblin fight
+            }
+            if (response == "balls"){
+                TextTyping("You walk towards the balls, there is literally nothing interesting about the balls, they are just..balls");
+            }
+            if (response == "rock"){
+                TextTyping("You walk towards the rock, its your old pal GobGob!\n you attempt to say 'hi' but he is to foucused on a stain on a wall to notice your gesture");
+            }
+            if (response=="inventory")
+            Inventory();
+        }
+}
+}
 
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
