@@ -9,10 +9,11 @@ bool cowtooth = false;
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
 (string Name, int Power) strongSword = ("Strong Sword", 5);
-(string Name, int Power) stinkySword = ("Stink Sword", 6);
+(string Name, int Power) stinkySword = ("Stinky Sword", 6);
 (string Name, int Power) superSword = ("Super Sword", 10);
 (string Name, int Power) cowSword = ("Cow Sword", 30);
 (string Name, int Power) cursedSword = ("Cursed Sword", 50);
+(string Name, int Power) bearHands = ("Bear Hands" , 15);
 (string Name, int Power) CurrentWeapon = bareHands;
 List<(string, int)> WeaponsInPossession = new List<(string, int)>();
 WeaponsInPossession.Add(bareHands);
@@ -32,6 +33,7 @@ xpNeeded = xpNeeded + (100 * level);
 
 
 WeaponsInPossession.Add(Sword);
+//inventory Functions
 string AskQuestion(string question)
 {
     string? answer = "";
@@ -77,7 +79,7 @@ void changeWeaponsEquiped()
     }
 }
 
-
+//Map Functions
 void Village()
 {
     TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love, and a burning skeleton\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
@@ -446,7 +448,7 @@ void Clearing1()
         }
     }
 }
-
+//Best Clearing
 void SusClearing()
 {
     TextTyping("As you enter this clearing, you you notice it looks awfully suspicious.");
@@ -714,7 +716,7 @@ void dungeonEntrance()
                 TextTyping("You reach in to your pocket and pull out the key you found in the southern clearing, it fits perfectly in to the hole and the door creeks open");
                 running = false;
                 dunProlouge = true;
-                dRoom1();
+                DungeonRoom1();
             }
             else
             {
@@ -1362,7 +1364,7 @@ void CommonSearching()
         LifePotion++;
     }
 
-    if (searchScore == 10)
+    if (searchScore >= 10)
     {
         TextTyping("You found an extrordinary stick! :)");
         WeaponsInPossession.Add(extrodinaryStick);
@@ -1386,13 +1388,14 @@ void UncommonSearching()
     if (searchScore >= 5 && searchScore <= 9)
     {
         Console.WriteLine(searchScore);
-        TextTyping("You have found a Life Potion!!!");
-        LifePotion++;
+        TextTyping("You have found a Goblin!!!");
+        SingleGoblinCombat();
     }
 
-    if (searchScore == 10)
+    if (searchScore >= 10)
     {
-        TextTyping("You found an extrordinary stick! :)");
+        TextTyping("You found an some Bear Hands!");
+        WeaponsInPossession.Add(bearHands);
     }
 
 
@@ -1439,8 +1442,9 @@ void CursedSearching()
     if (searchScore >= 5 && searchScore <= 9)
     {
         Console.WriteLine(searchScore);
-        TextTyping("You have found the cursed apple!!!");
-        LifePotion++;
+        TextTyping("You have Been Cursed!!!");
+        MaxLife = MaxLife - 5;
+        TextTyping($"Your max life has been reduced to {MaxLife}");
     }
 
     if (searchScore == 10)
@@ -1621,7 +1625,7 @@ void SingleGoblinCombat()
                 GoblinLife = GoblinLife - PlayerDMG;
 
             }
-            if(response == "run"){
+            if(response == "2"){
                 if(speed <= GobSpeed - 1){
                     TextTyping("You got away safely");
                     House();
@@ -1671,7 +1675,7 @@ void DungeonRoom4()
         {
             TextTyping("You begin heading north!!");
             inDungeonRoom4 = false;
-            dRoom1();
+            DungeonRoom1();
         }
         if (response == "east")
         {
@@ -1688,7 +1692,7 @@ void DungeonRoom4()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1788,7 +1792,7 @@ void DungeonRoom5()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1851,7 +1855,7 @@ void DungeonRoom6()
             while (searching)
             {
                 TextTyping("<yes or no>");
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
                 if (answer == "yes")
                 {
@@ -1930,7 +1934,7 @@ void WinGame()
     TextTyping("It's all over now. Everthing is peaceful, when suddenly your best friend bursts into your house and tells you his wife has gone missing!! There's a sinking feeling in your gut, but it couldn't be. To ease the feeling you go and check the dungeon to make sure. Your worst dream has come true, you must not have finished Trevor off, because as you enter the throne room his body is nowhere to be found...");
     TextTyping("         G  A  M  E");
     TextTyping("         O  V  E  R");
-    
+    System.Environment.Exit(0);
 }
 
 void TextTyping(string Sentence)
@@ -1976,7 +1980,7 @@ void gobGob()
     TextTyping("you approach the lumpy rock");
     TextTyping("It smells really bad, and seems to be breathing");
     TextTyping("what would you like to do?\n <run, touch>");
-    string iguess = Console.ReadLine();
+    string? iguess = Console.ReadLine();
     if (iguess == "run")
     {
         TextTyping("you turn to run, but the rock stands up and looks towards you");
@@ -2003,7 +2007,7 @@ void gobGob()
             case 3:
                 TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
 
-During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
+    During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
 
 By the late 20th century lard began to be considered less healthy than vegetable oils (such as olive and sunflower oil) because of its high content of saturated fatty acids and cholesterol. However, despite its reputation, lard has less saturated fat, more unsaturated fat and less cholesterol than an equal amount of butter by weight.[2] Unhydrogenated lard contains no transfats. It has also been regarded as a 'poverty food'.[6]
 
@@ -2119,12 +2123,12 @@ void BossFight(){
                 if(trevorHealth <=50 && SuperSayen == false){
                     TextTyping("You hit trevor with a mighty blow, making him rell back, but it seems that all you did  was just anger him.");
                     Console.ReadLine();
-                    TextTyping("He starts glowing with a neon green light, and his muscles start to bulge, veins popping, and growing in size. ");
+                    TextTyping("He starts glowing with a neon green light, and his muscles start to bulge, veins popping, and growing in size.");
                     string? Response = Console.ReadLine();
                     TextTyping("5 feet tall");
                     trevorAttack = trevorAttack + 3;
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2133,7 +2137,7 @@ void BossFight(){
                     trevorAttack = trevorAttack + 3;
                     }                   
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2142,7 +2146,7 @@ void BossFight(){
                     trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2151,7 +2155,7 @@ void BossFight(){
                     trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2196,6 +2200,12 @@ void BossFight(){
         TextTyping($"Trevor smacked you for {GobAttck} Damage");
         Health = Health - GobAttck;
         Console.ReadLine();
+        if(Health <= 0){
+            TextTyping("You have died!!");
+            Console.ReadLine();
+            TextTyping("Your wife ends up at the mercy of Trevor");
+            System.Environment.Exit(0);
+        }
         TextTyping($"You have {Health} Left");
         trevorSpeed = trevorSpeed + 5;
         
@@ -2203,9 +2213,8 @@ void BossFight(){
 }
 
 
+void DungeonRoom1()
 
-
-void dRoom1()
 {
     if (dunProlouge == true)
     {
@@ -2262,7 +2271,7 @@ void DungeonRoom2()
         {
             TextTyping("You enter the room to the west");
             ROM2 = false;
-            dRoom1();
+            DungeonRoom1();
         }
         if (response == "south")
         {
@@ -2317,6 +2326,7 @@ void DungeonRoom2()
         }
     }
 }
+
 void Dungeonroom3(){
 bool rom3 = true;
 TextTyping("you enter the goblin DayCare! it has a suprising lack of children.");
@@ -2358,4 +2368,3 @@ while(rom3){
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
 House();
-
