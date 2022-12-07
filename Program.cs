@@ -343,6 +343,9 @@ void CowField()
             inField = false;
             Shop();
         }
+        if(response == "cow sword"){
+            WeaponsInPossession.Add(cowSword);
+        }
 
         if (response == "inventory")
         {
@@ -1858,8 +1861,6 @@ void DungeonBossRoom()
     while (inDungeonBossRoom)
     {
         BossFight();
-
-    //if Trevor is defeated
         WinGame();
     }
 }
