@@ -715,7 +715,7 @@ void dungeonEntrance()
                 TextTyping("You reach in to your pocket and pull out the key you found in the southern clearing, it fits perfectly in to the hole and the door creeks open");
                 running = false;
                 dunProlouge = true;
-                dRoom1();
+                DungeonRoom1();
             }
             else
             {
@@ -1674,7 +1674,7 @@ void DungeonRoom4()
         {
             TextTyping("You begin heading north!!");
             inDungeonRoom4 = false;
-            //dRoom1();
+            DungeonRoom1();
         }
         if (response == "east")
         {
@@ -2205,10 +2205,7 @@ void BossFight(){
     }
 }
 
-
-//dungeon!
-
-void dRoom1()
+void DungeonRoom1()
 {
     if (dunProlouge == true)
     {
@@ -2265,7 +2262,7 @@ void DungeonRoom2()
         {
             TextTyping("You enter the room to the west");
             ROM2 = false;
-            dRoom1();
+            DungeonRoom1();
         }
         if (response == "south")
         {
@@ -2320,6 +2317,7 @@ void DungeonRoom2()
         }
     }
 }
+
 void Dungeonroom3(){
 bool rom3 = true;
 TextTyping("you enter the goblin DayCare! it has a suprising lack of children.");
