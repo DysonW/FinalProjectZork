@@ -7,10 +7,11 @@ bool searchDungChest = true;
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
 (string Name, int Power) strongSword = ("Strong Sword", 5);
-(string Name, int Power) stinkySword = ("Stink Sword", 6);
+(string Name, int Power) stinkySword = ("Stinky Sword", 6);
 (string Name, int Power) superSword = ("Super Sword", 10);
 (string Name, int Power) cowSword = ("Cow Sword", 30);
 (string Name, int Power) cursedSword = ("Cursed Sword", 50);
+(string Name, int Power) bearHands = ("Bear Hands" , 15);
 (string Name, int Power) CurrentWeapon = bareHands;
 List<(string, int)> WeaponsInPossession = new List<(string, int)>();
 WeaponsInPossession.Add(bareHands);
@@ -28,6 +29,7 @@ xpNeeded = xpNeeded + (100 * level);
 
 
 WeaponsInPossession.Add(Sword);
+//inventory Functions
 string AskQuestion(string question)
 {
     string? answer = "";
@@ -73,7 +75,7 @@ void changeWeaponsEquiped()
     }
 }
 
-
+//Map Functions
 void Village()
 {
     TextTyping("You step into the village!! Because of the Evil Cow Man, the Village has been deserted.\nYou see the door to your house, as well as the shop that you know and love, and a burning skeleton\nThere is also a path to the East that will let you exit the village\nWhat would you like to do?");
@@ -1345,7 +1347,7 @@ void CommonSearching()
         LifePotion++;
     }
 
-    if (searchScore == 10)
+    if (searchScore >= 10)
     {
         TextTyping("You found an extrordinary stick! :)");
         WeaponsInPossession.Add(extrodinaryStick);
@@ -1369,13 +1371,14 @@ void UncommonSearching()
     if (searchScore >= 5 && searchScore <= 9)
     {
         Console.WriteLine(searchScore);
-        TextTyping("You have found a Life Potion!!!");
-        LifePotion++;
+        TextTyping("You have found a Goblin!!!");
+        SingleGoblinCombat();
     }
 
-    if (searchScore == 10)
+    if (searchScore >= 10)
     {
-        TextTyping("You found an extrordinary stick! :)");
+        TextTyping("You found an some Bear Hands!");
+        WeaponsInPossession.Add(bearHands);
     }
 
 
@@ -1422,8 +1425,9 @@ void CursedSearching()
     if (searchScore >= 5 && searchScore <= 9)
     {
         Console.WriteLine(searchScore);
-        TextTyping("You have found the cursed apple!!!");
-        LifePotion++;
+        TextTyping("You have Been Cursed!!!");
+        MaxLife = MaxLife - 5;
+        TextTyping($"Your max life has been reduced to {MaxLife}");
     }
 
     if (searchScore == 10)
@@ -1872,7 +1876,7 @@ void WinGame()
     TextTyping("It's all over now. Everthing is peaceful, when suddenly your best friend bursts into your house and tells you his wife has gone missing!! There's a sinking feeling in your gut, but it couldn't be. To ease the feeling you go and check the dungeon to make sure. Your worst dream has come true, you must not have finished Trevor off, because as you enter the throne room his body is nowhere to be found...");
     TextTyping("         G  A  M  E");
     TextTyping("         O  V  E  R");
-    
+    System.Environment.Exit(0);
 }
 
 void TextTyping(string Sentence)
@@ -2061,12 +2065,12 @@ void BossFight(){
                 if(trevorHealth <=50 && SuperSayen == false){
                     TextTyping("You hit trevor with a mighty blow, making him rell back, but it seems that all you did  was just anger him.");
                     Console.ReadLine();
-                    TextTyping("He starts glowing with a neon green light, and his muscles start to bulge, veins popping, and growing in size. ");
+                    TextTyping("He starts glowing with a neon green light, and his muscles start to bulge, veins popping, and growing in size.");
                     string? Response = Console.ReadLine();
                     TextTyping("5 feet tall");
                     trevorAttack = trevorAttack + 3;
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2075,7 +2079,7 @@ void BossFight(){
                     trevorAttack = trevorAttack + 3;
                     }                   
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2084,7 +2088,7 @@ void BossFight(){
                     trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2093,7 +2097,7 @@ void BossFight(){
                     trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                    if(Response == "attack" || Response == "ATTACK" || Response == "Attack"){
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
                     }
@@ -2138,6 +2142,12 @@ void BossFight(){
         TextTyping($"Trevor smacked you for {GobAttck} Damage");
         Health = Health - GobAttck;
         Console.ReadLine();
+        if(Health <= 0){
+            TextTyping("You have died!!");
+            Console.ReadLine();
+            TextTyping("Your wife ends up at the mercy of Trevor");
+            System.Environment.Exit(0);
+        }
         TextTyping($"You have {Health} Left");
         trevorSpeed = trevorSpeed + 5;
         
@@ -2150,8 +2160,3 @@ void BossFight(){
 Console.Clear();
 TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
 House();
-
-
-
-
-
