@@ -343,6 +343,9 @@ void CowField()
             inField = false;
             Shop();
         }
+        if(response == "cow sword"){
+            WeaponsInPossession.Add(cowSword);
+        }
 
         if (response == "inventory")
         {
@@ -1844,6 +1847,34 @@ void DungeonRoom6()
     }
 }
 
+void DungeonBossRoom()
+{
+    TextTyping("You enter the final room of the dungeon. A chill runs down your back as you realise it's getting colder with every step.");
+    TextTyping("You enter a big room lit by candles but it's oddly bright since all the light is bouncing off of the gold hoardes that cover the floor. In the center of the room is a big throne with the leader sitting on it.");
+    Console.ReadKey();
+    TextTyping("You are now facing Trevor, the menacingly beastly Cow-Man. His face is snarled and he wears nothing but a gucci loin cloth and a deadly glare.\nAs you look around his throne room, among all the gold, in the back corner is a cage. Inside the cage is the reason you are here.");
+    TextTyping("Clarabell looks at you and a spark of hope enters her eyes as she recognizes you. Her only love, the one she's counted on since ever since you two met all those years ago.");
+    TextTyping("A fire ignites in your heart as you know, one way or the other this will all be over soon. Trever stands to his full height, a staggering 4 feet. You approach him screaming Clarabells' name and the battle begins");
+    Console.ReadKey();
+    bool inDungeonBossRoom = true;
+    
+    while (inDungeonBossRoom)
+    {
+        BossFight();
+        WinGame();
+    }
+}
+
+void WinGame()
+{
+    TextTyping("You have slain Trevor the evil Cow Man!! Congratulations, you run to the love of your life Clarabell. She tells you the key to her cage is on the throne. You go grab the key and then let Clarabell out of her awfully beautiful cage.");
+    TextTyping("The two of you return home hand in hand hoping to live the rest of your lives in peace. Trying to forget Trevor and all that has happened. On the plus side, Clarabell comments on how much stronger you look now! You vow you will always keep her safe as the two of you walk back into your house.");
+    TextTyping("It's all over now. Everthing is peaceful, when suddenly your best friend bursts into your house and tells you his wife has gone missing!! There's a sinking feeling in your gut, but it couldn't be. To ease the feeling you go and check the dungeon to make sure. Your worst dream has come true, you must not have finished Trevor off, because as you enter the throne room his body is nowhere to be found...");
+    TextTyping("         G  A  M  E");
+    TextTyping("         O  V  E  R");
+    
+}
+
 void TextTyping(string Sentence)
 {
     foreach (var character in Sentence)
@@ -1934,6 +1965,183 @@ It is also again becoming popular in the United Kingdom among aficionados of tra
 
     }
 
+}
+
+void BossFight(){
+    int trevorHealth = 100;
+    int trevorAttack = 10;
+    int PlayerSpeed = 0;
+    int trevorSpeed = 0;
+    Attack = 15;
+    bool Living = true;
+    bool SuperSayen = false;
+    TextTyping("You square up to Trevor the Cow Man, facing him with a fierce determination to get your wife back, willing to do anything.");
+    TextTyping("You charge Trevor, weapon held high.");
+    Console.ReadLine();
+    TextTyping("And the battle ensues.");
+    Rounds();
+    
+    void Rounds()
+    {
+        if (trevorHealth <= 0)
+        {
+            Console.WriteLine("You have defeated the Goblin!");
+            Living = false;
+        }
+        while (Living)
+        {
+
+            if (PlayerSpeed < trevorSpeed)
+            {
+                PlayerTurn();
+                TrevorTurn();
+                Rounds();
+            }
+            if (PlayerSpeed > trevorSpeed)
+            {
+                TrevorTurn();
+                PlayerTurn();
+                Rounds();
+            }
+            else
+            {
+                PlayerTurn();
+                TrevorTurn();
+                Rounds();
+            }
+        }
+    }
+
+    void PlayerTurn()
+    {
+        TextTyping("What would you like to do?");
+        bool Responding = true;
+        while (Responding)
+        {
+            TextTyping("1) Attack\n2) heal");
+            string? response = Console.ReadLine();
+            if (response == "1")
+            {
+                int PlayerDMG = 0;
+                Responding = false;
+                TextTyping("Which type of attack would you like to perform?");
+                bool choosing = true;
+                while (choosing)
+                {
+                    TextTyping("<light, normal, heavy>");
+                    string? answer = Console.ReadLine();
+                    if (answer == "light")
+                    {
+                        choosing = false;
+                        PlayerDMG = Attack + 2;
+                        PlayerSpeed = PlayerSpeed + 3;
+                        TextTyping($"You hit Trevor with a light attack dealing {PlayerDMG} Damage");
+                    }
+                    if (answer == "normal")
+                    {
+                        choosing = false;
+                        PlayerDMG = Attack + 3;
+                        PlayerSpeed = PlayerSpeed + 5;
+                        TextTyping($"You hit Trevor with a normal attack dealing {PlayerDMG} Damage");
+                    }
+                    if (answer == "heavy")
+                    {
+                        choosing = false;
+                        PlayerDMG = Attack * 2;
+                        PlayerSpeed = PlayerSpeed + 8;
+                        TextTyping($"You hit Trevor with a heavy attack dealing {PlayerDMG} Damage");
+                    }
+                    else
+                    {
+                        TextTyping("I can't read that");
+                    }
+                }
+                trevorHealth = trevorHealth - PlayerDMG;
+                //Phase 2 of Boss Fight
+                if(trevorHealth <=50 && SuperSayen == false){
+                    TextTyping("You hit trevor with a mighty blow, making him rell back, but it seems that all you did  was just anger him.");
+                    Console.ReadLine();
+                    TextTyping("He starts glowing with a neon green light, and his muscles start to bulge, veins popping, and growing in size. ");
+                    string? Response = Console.ReadLine();
+                    TextTyping("5 feet tall");
+                    trevorAttack = trevorAttack + 3;
+                    Response = Console.ReadLine();
+                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                        TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
+                        SuperSayen = true;
+                    }
+                    if(SuperSayen == false){
+                    TextTyping("6 feel tall!");
+                    trevorAttack = trevorAttack + 3;
+                    }                   
+                    Response = Console.ReadLine();
+                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                        TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
+                        SuperSayen = true;
+                    }
+                    if(SuperSayen == false){
+                    TextTyping("7 feel tall!!");
+                    trevorAttack = trevorAttack + 3;
+                    }
+                    Response = Console.ReadLine();
+                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                        TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
+                        SuperSayen = true;
+                    }
+                    if(SuperSayen == false){
+                    TextTyping("8 feet tall!!!");
+                    trevorAttack = trevorAttack + 3;
+                    }
+                    Response = Console.ReadLine();
+                    if(Response == "attck" || Response == "ATTACK" || Response == "Attack"){
+                        TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
+                        SuperSayen = true;
+                    }
+                    if(SuperSayen == false){
+                    TextTyping("9 feet tall!!!!");
+                    trevorAttack = trevorAttack + 3;
+                    }
+                    Response = Console.ReadLine();
+                    if(SuperSayen == false){
+                        TextTyping("10 FEET TALL!!!!!");
+                        trevorAttack = trevorAttack + 5;
+                        TextTyping("He looks at you, scoffing at your diminutive size, and comes for you again");
+                        SuperSayen = true;
+                    }
+                }
+
+            }
+            if(response == "2"){
+
+                if(PlayerSpeed >= trevorSpeed + 1){
+                    TextTyping("As you were trying to drink your life potion, Trevor the Cow Man knocks the bottle out of your hands!");
+                    LifePotion--;
+                }
+                else{
+                    TextTyping("You Heal Up!!");
+                    LifePotion--;
+                    TextTyping($"You have {LifePotion} Life Potions Left");
+                    Health = MaxLife;
+                    Responding = false;
+                }
+            }
+            else{
+                TextTyping("What would you like to do?");
+            }
+        }
+    }
+
+    void TrevorTurn()
+    {
+        Random GobDmg = new Random();
+        int GobAttck = GobDmg.Next(1, 15) + trevorAttack;        
+        TextTyping($"Trevor smacked you for {GobAttck} Damage");
+        Health = Health - GobAttck;
+        Console.ReadLine();
+        TextTyping($"You have {Health} Left");
+        trevorSpeed = trevorSpeed + 5;
+        
+    }
 }
 
 
