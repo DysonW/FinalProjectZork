@@ -2,7 +2,8 @@
 int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
-bool dunProlouge= false;
+bool dunProlouge = false;
+int gobTooth = 0;
 (string Name, int Power) bareHands = ("Bare Hands", 1);
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
@@ -589,7 +590,8 @@ void BarrenClearing()
                     CommonSearching();
                     searching = false;
                 }
-                else if (search=="rock"){
+                else if (search == "rock")
+                {
                     gobGob();
                 }
                 else
@@ -720,10 +722,11 @@ void dungeonEntrance()
             {
                 TextTyping("You reach in to your pocket and pull out the key you found in the southern clearing, it fits perfectly in to the hole and the door creeks open");
                 running = false;
-                dunProlouge=true;
-                Room1();
+                dunProlouge = true;
+                dRoom1();
             }
-            else{
+            else
+            {
                 TextTyping("you shove your sword into the key hole hoping to jam the door open... it didn't work. The suddenly yells 'BEGON FALSE KNIGHT,YOU ARE NOT RESDY TO FIGHT THE EVIL COW MAN!'");
                 TextTyping("He yells so loud tha the blows you all the way back to the wonderful clearing.");
                 running = false;
@@ -1175,7 +1178,7 @@ void GoblinCombat()
         {
             TextTyping("You have defeated all of the goblins, Congratulations!");
             GoblinCamp();
-            
+
         }
         if (speed < GobSpeed)
         {
@@ -1219,7 +1222,7 @@ void GoblinCombat()
                 for (x = 0; x < GobLife.Count; x++)
                 {
                     if (GobLife[x] <= 0)
-                    TextTyping("Dead");
+                        TextTyping("Dead");
                     else
                         TextTyping($"Goblin {x + 1}, {GobLife[x]} Life left ");
                 }
@@ -1461,15 +1464,15 @@ void CursedSearching()
 void Inventory()
 {
     TextTyping($"Life Potions: {LifePotion}");
-         TextTyping("Would you like to use a Life Potion?\n<yes or no>");
-     string? response = Console.ReadLine();
-      if (response == "yes")
+    TextTyping("Would you like to use a Life Potion?\n<yes or no>");
+    string? response = Console.ReadLine();
+    if (response == "yes")
     {
         Health = 20;
-        LifePotion = LifePotion -1;
+        LifePotion = LifePotion - 1;
         TextTyping($"Health: {Health}\nLife Potions: {LifePotion}");
     }
-     else if (response == "no")
+    else if (response == "no")
         TextTyping("Okay, stay healthy!");
     else
     {
@@ -1555,34 +1558,39 @@ void skeleyTalk()
     TextTyping("What do i have to do to get rid of you, i have nothing, im just a pile of bones! Hm..I got it! Here, its a cursed apple, I dont know what its used for but take it and get out of my sight!");
     // add cusrsed apple     
 
-    }
+}
 
-void gobGob(){
+void gobGob()
+{
     TextTyping("you approach the lumpy rock");
     TextTyping("It smells really bad, and seems to be breathing");
     TextTyping("what would you like to do?\n <run, touch>");
     string iguess = Console.ReadLine();
-    if (iguess== "run"){
+    if (iguess == "run")
+    {
         TextTyping("you turn to run, but the rock stands up and looks towards you");
     }
-    if (iguess == "touch"){
+    if (iguess == "touch")
+    {
         TextTyping("you reach out to touch the rock, you are suprised to see that the rock... touched you first");
     }
     TextTyping("HI. ME AM ARE GOB GOB. WELCOM TO MY CLERING.");
     TextTyping("WOULD YOU LIK A LARD?/n (he holds out a bucket of lard, you politly push it back)");
     bool gobtalk = true;
-    while (gobtalk){
+    while (gobtalk)
+    {
         Console.WriteLine("(1) What are you?/n(2) Have you seen my wife?/n(3) why lard?/n(4) Gud buy??");
         int respond = int.Parse(Console.ReadLine());
-        switch (respond){
+        switch (respond)
+        {
             case 1:
-            TextTyping("I am a GOB GOB.");
-            break;
+                TextTyping("I am a GOB GOB.");
+                break;
             case 2:
-            TextTyping("yes");
-            break;
+                TextTyping("yes");
+                break;
             case 3:
-            TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
+                TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
 
 During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
 
@@ -1593,13 +1601,13 @@ Many restaurants in the western nations have eliminated the use of lard in their
 In the 1990s and early 2000s, however, chefs and bakers rediscovered lard's unique culinary values, leading to a partial rehabilitation of this fat among 'foodies'. Negative publicity about the transfat content of the partially hydrogenated vegetable oils in vegetable shortening has partially driven this trend. Chef and food writer Rick Bayless is a prominent proponent of the virtues of lard for certain types of cooking.[8][9][10][11]
 
 It is also again becoming popular in the United Kingdom among aficionados of traditional British cuisine. This led to a 'lard crisis' in late 2004.[12][13]");
-            break;
+                break;
             case 4:
-            TextTyping("*munch* by");
-            break;
+                TextTyping("*munch* by");
+                break;
             default:
-            TextTyping("*BELCH*");
-            break;
+                TextTyping("*BELCH*");
+                break;
         }
 
     }
@@ -1616,10 +1624,154 @@ House();
 
 //dungeon!
 
-void Room1(){
-    if (dunProlouge==true){
-        TextTyping("");
+void dRoom1()
+{
+    if (dunProlouge == true)
+    {
+        TextTyping("you enter the dungeon. The smell of cow corupts the air. the walls and made from stone bricks and are covered with moss.\n the dimmly lit hallway is only barely visible from the door.\n You enter the cow mans dungeon");
     }
+    bool ROM1 = true;
+    while (ROM1)
+    {
+        TextTyping("You enter the First room, there isnt much to see in here. you see a path to the south and a east.");
+        TextTyping("What would you like to do ?\n <South, East, Search, Inventory>");
+        string response = Console.ReadLine();
+        if (response == "south")
+        {
+            ROM1 = false;
+            //DungeonRoom4
+        }
+        if (response == "east")
+        {
+            TextTyping("You enter the room to he east!");
+            ROM1 = false;
+            DungeonRoom2();
+        }
+        if (response == "search")
+        {
+            TextTyping("You desperatly look around the room for something to search.\nAll you find is an empty pile of bones");
+            TextTyping("Suddenly the pile of bones started started rattling.\nA brave goblin cultist leaps from the pile, daggar out and ready to kill! ");
+            //insert goblin here 
+            // add a tooph
+        }
+        if (response == "inventory")
+        {
+            Inventory();
+        }
+
+    }
+}
+
+void DungeonRoom2()
+{
+    bool ROM2 = true;
+    TextTyping("You enter the room and see a kitchen. Equiped with a fridge, stove, and a window over the sink (for fire safety)");
+    TextTyping("You see a path to the east, west, and south. You also smell something really good cooking.");
+    while (ROM2)
+    {
+        TextTyping("What would you like to do?\n <East, West, South, Seach, Inventory>");
+        string response = Console.ReadLine();
+        if (response == "east")
+        {
+            TextTyping("You enter the room to the east");
+            ROM2 = false;
+            Dungeonroom3();
+        }
+        if (response == "west")
+        {
+            TextTyping("You enter the room to the west");
+            ROM2 = false;
+            dRoom1();
+        }
+        if (response == "south")
+        {
+            TextTyping("You enter the room to the south.");
+            ROM2 = false;
+            //Room 5
+        }
+        if (response == "search")
+        {
+            bool searching = true;
+            bool theSpoon = false;
+            TextTyping("You look around the room, you see a pot of stew, a suspicious pile of dirt, and a spoon");
+            while (searching)
+            {
+                TextTyping("What would you like to search?\n<Stew, Dirt, spoon, exit>");
+                response = Console.ReadLine();
+                if (response == "stew")
+                {
+                    TextTyping("You approach the stew, it smells good! Would you like to have some stew?\n<Y or N>");
+                    string soup = Console.ReadLine();
+                    if (soup == "y" && theSpoon == true)
+                    {
+                        TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
+                        //stew goblin
+                        Health=Health+5;
+                    }
+                    if (soup == "y" && theSpoon != true)
+                    {
+                        TextTyping("You reach for some stew, and burn your hand trying to grab some. Stew is hot, maybe if you had a spoon you wouldn't burn your hand");
+                        Health=Health-5;
+                    }
+                    if (soup == "n")
+                    {
+                        TextTyping("You decide that your not hungry and walk away.");
+                    }
+                }
+                if (response=="dirt"){
+                    TextTyping("you look through the dirt and find..........dirt!");
+                }
+                if (response == "spoon"){
+                    TextTyping("you cautiously approach the spoon. You grab the spoon thinking its trapped, YOU GOT THE SPOON!");
+                    theSpoon=true; 
+                }
+                if (response == "exit"){
+                    searching=false;
+                }
+
+            }
+        }
+        if (response == "inventory"){
+            Inventory();
+        }
+    }
+}
+void Dungeonroom3(){
+bool rom3 = true;
+TextTyping("you enter the goblin DayCare! it has a suprising lack of children.");
+TextTyping("You see a path to the south and to the east. you also see a wide varity of children toys, as well as a breathing rock.");
+while(rom3){
+    TextTyping("what would you like to do?\n<east, south, search, invertory");
+    string response = Console.ReadLine();
+    if (response == "east")
+        {
+            TextTyping("You enter the room to the east");
+            rom3 = false;
+            DungeonRoom2();
+        }
+        if (response == "south")
+        {
+            TextTyping("You enter the room to the south");
+            rom3 = false;
+            //DungeonRoom6();
+        }
+        if (response=="search"){
+            TextTyping("You look around the room. You see a box of legos, a pile of balls, and a rock\nWhat would you like to search?\n<legos, balls, rock>");
+            response=Console.ReadLine();
+            if (response=="legos"){
+                TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
+                //goblin fight
+            }
+            if (response == "balls"){
+                TextTyping("You walk towards the balls, there is literally nothing interesting about the balls, they are just..balls");
+            }
+            if (response == "rock"){
+                TextTyping("You walk towards the rock, its your old pal GobGob!\n you attempt to say 'hi' but he is to foucused on a stain on a wall to notice your gesture");
+            }
+            if (response=="inventory")
+            Inventory();
+        }
+}
 }
 
 
