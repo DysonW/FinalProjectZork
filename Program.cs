@@ -1067,7 +1067,7 @@ void GoblinClearing()
         {
             TextTyping("You head over to the Goblin Camp, weapon drawn.");
             inGobClear = false;
-            GoblinCamp();
+            GoblinCombat();
         }
 
         if (response == "inventory")
@@ -1083,7 +1083,6 @@ void GoblinClearing()
 
 void GoblinCamp()
 {
-    GoblinCombat();
     TextTyping("You have defeated all of the goblins!!");
     TextTyping("You took care of the goblins milling around, but the rest must be on a hunting trip.");
     Console.ReadKey();
@@ -1171,7 +1170,8 @@ void GoblinCombat()
         {
             Console.WriteLine("You have defeated all of the goblins, Congratulations!");
             Living = false;
-            score= score + (10*NumMonster);
+            score = score + (10 * NumMonster);
+            GoblinCamp();
 
         }
         while (Living)
@@ -1416,13 +1416,17 @@ void RareSearching()
     Random search = new Random();
     int item = search.Next(0, 50);
     int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore <= 9)
+    if (searchScore >= 5 && searchScore < 9)
     {
         Console.WriteLine(searchScore);
         TextTyping("You have found a Life Potion!!!");
         LifePotion++;
     }
-
+    if (searchScore >= 9)
+    {
+        TextTyping("You have found some history books and you read them to increase your wisdom.");
+        wisdom = wisdom + 2;
+    }
     if (searchScore == 10)
     {
         TextTyping("You found a Super Sword! :)");
@@ -1451,7 +1455,7 @@ void CursedSearching()
         TextTyping($"Your max life has been reduced to {MaxLife}");
     }
 
-    if (searchScore == 10)
+    if (searchScore >= 10)
     {
         TextTyping("You found The Cursed Sword! :)");
         WeaponsInPossession.Add(cursedSword);
@@ -1553,12 +1557,7 @@ void SingleGoblinCombat()
 
     void Rounds()
     {
-        if (GoblinLife <= 0)
-        {
-            Living = false;
-            Console.WriteLine("You have defeated the Goblin!");
-            score = score+10;
-        }
+
         while (Living)
         {
 
@@ -1628,6 +1627,12 @@ void SingleGoblinCombat()
                     }
                 }
                 GoblinLife = GoblinLife - PlayerDMG;
+                if (GoblinLife <= 0)
+                {
+                    Living = false;
+                    Console.WriteLine("You have defeated the Goblin!");
+                    score = score + 10;
+                }
 
             }
             if (response == "2")
@@ -1655,7 +1660,7 @@ void SingleGoblinCombat()
         Random GobDmg = new Random();
         int GobAttck = GobDmg.Next(1, 5) + goblinAttk;
         Random Hit = new Random();
-        int Success = Hit.Next(1, 2);
+        int Success = Hit.Next(1, 5);
         if (Success == 1)
             TextTyping("The Goblin Missed you");
         else
@@ -2025,15 +2030,10 @@ void gobGob()
                 break;
             case 3:
                 TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
-
     During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
-
 By the late 20th century lard began to be considered less healthy than vegetable oils (such as olive and sunflower oil) because of its high content of saturated fatty acids and cholesterol. However, despite its reputation, lard has less saturated fat, more unsaturated fat and less cholesterol than an equal amount of butter by weight.[2] Unhydrogenated lard contains no transfats. It has also been regarded as a 'poverty food'.[6]
-
 Many restaurants in the western nations have eliminated the use of lard in their kitchens because of the health-related dietary restrictions of many of their customers,[citation needed] and religious pork-based dietary restrictions such as Kashrut and Halal mean that some bakers substitute beef tallow for lard.[citation needed]
-
 In the 1990s and early 2000s, however, chefs and bakers rediscovered lard's unique culinary values, leading to a partial rehabilitation of this fat among 'foodies'. Negative publicity about the transfat content of the partially hydrogenated vegetable oils in vegetable shortening has partially driven this trend. Chef and food writer Rick Bayless is a prominent proponent of the virtues of lard for certain types of cooking.[8][9][10][11]
-
 It is also again becoming popular in the United Kingdom among aficionados of traditional British cuisine. This led to a 'lard crisis' in late 2004.[12][13]");
                 break;
             case 4:
@@ -2066,12 +2066,7 @@ void BossFight()
 
     void Rounds()
     {
-        if (trevorHealth <= 0)
-        {
-            Console.WriteLine("You have defeated the Goblin!");
-            Living = false;
-            score = score + 100;
-        }
+
         while (Living)
         {
 
@@ -2141,6 +2136,12 @@ void BossFight()
                     }
                 }
                 trevorHealth = trevorHealth - PlayerDMG;
+                if (trevorHealth <= 0)
+                {
+                    Console.WriteLine("You have defeated the Goblin!");
+                    Living = false;
+                    score = score + 100;
+                }
                 //Phase 2 of Boss Fight
                 if (trevorHealth <= 50 && SuperSayen == false)
                 {
@@ -2245,7 +2246,6 @@ void BossFight()
         }
         TextTyping($"You have {Health} Left");
         trevorSpeed = trevorSpeed + 5;
-
     }
 }
 
@@ -2261,7 +2261,7 @@ void DungeonRoom1()
     if (dunProlouge == true)
     {
         TextTyping("you enter the dungeon. The smell of cow corupts the air. the walls and made from stone bricks and are covered with moss.\n the dimmly lit hallway is only barely visible from the door.\n You enter the cow mans dungeon");
-        dunProlouge=false;
+        dunProlouge = false;
     }
     bool ROM1 = true;
     while (ROM1)
@@ -2353,7 +2353,7 @@ void DungeonRoom2()
                         {
                             TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
                             SingleGoblinCombat();
-                            gobfight2=true;
+                            gobfight2 = true;
                             cowTeeth++;
                         }
                         else if (gobfight2 == true)
@@ -2392,7 +2392,7 @@ void DungeonRoom2()
         {
             Inventory();
         }
-        else if (response==null)
+        else if (response == null)
         {
             TextTyping("invalid response");
         }
@@ -2431,7 +2431,7 @@ void Dungeonroom3()
                     TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
                     SingleGoblinCombat();
                     cowTeeth++;
-                    gobfight3= true;
+                    gobfight3 = true;
                 }
                 else if (gobfight3 == true)
                 {
@@ -2448,7 +2448,7 @@ void Dungeonroom3()
             }
             if (response == "inventory")
                 Inventory();
-            else if (response==null)
+            else if (response == null)
             {
                 TextTyping("invalid response");
             }
