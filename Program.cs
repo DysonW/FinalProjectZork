@@ -2247,7 +2247,9 @@ void BossFight()
     }
 }
 
+
 void DungeonRoom1()
+
 {
     if (dunProlouge == true)
     {
