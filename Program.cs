@@ -4,10 +4,7 @@ bool dungeonKey = false;
 bool searchDungChest = true;
 
 bool dunProlouge = false;
-<<<<<<< HEAD
-=======
 bool cowtooth = false;
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
 (string Name, int Power) bareHands = ("Bare Hands", 1);
 (string Name, int Power) extrodinaryStick = ("Extrordinary stick", 5);
 (string Name, int Power) Sword = ("Sword", 3);
@@ -24,12 +21,8 @@ WeaponsInPossession.Add(bareHands);
 int wisdom = 1;
 int LifePotion = 0;
 int Attack = CurrentWeapon.Power + level;
-
+int score = 0;
 int cowTeeth = 0;
-<<<<<<< HEAD
-=======
-
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
 bool searchGobChest = true;
 int MaxLife = 50;
 int xpNeeded = 0;
@@ -1178,6 +1171,7 @@ void GoblinCombat()
         {
             Console.WriteLine("You have defeated all of the goblins, Congratulations!");
             Living = false;
+            score= score + (10*NumMonster);
 
         }
         while (Living)
@@ -1563,6 +1557,7 @@ void SingleGoblinCombat()
         {
             Living = false;
             Console.WriteLine("You have defeated the Goblin!");
+            score = score+10;
         }
         while (Living)
         {
@@ -1635,11 +1630,7 @@ void SingleGoblinCombat()
                 GoblinLife = GoblinLife - PlayerDMG;
 
             }
-<<<<<<< HEAD
-            if (response == "run")
-=======
             if (response == "2")
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
             {
                 if (speed <= GobSpeed - 1)
                 {
@@ -1920,11 +1911,7 @@ void DungeonRoom6()
 
 void FaceDoor()
 {
-<<<<<<< HEAD
-    if (cowTeeth != 6)
-=======
     if (cowTeeth >= 6)
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
     {
         TextTyping("You only have " + cowTeeth + " cow teeth but you need 6. I will not open until you provide my TEETH!");
         DungeonRoom5();
@@ -1964,11 +1951,9 @@ void WinGame()
     TextTyping("It's all over now. Everthing is peaceful, when suddenly your best friend bursts into your house and tells you his wife has gone missing!! There's a sinking feeling in your gut, but it couldn't be. To ease the feeling you go and check the dungeon to make sure. Your worst dream has come true, you must not have finished Trevor off, because as you enter the throne room his body is nowhere to be found...");
     TextTyping("         G  A  M  E");
     TextTyping("         O  V  E  R");
-<<<<<<< HEAD
-
-=======
+    TextTyping($"Your final Score was: {score}");
+    Console.ReadKey();
     System.Environment.Exit(0);
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
 }
 
 void TextTyping(string Sentence)
@@ -2085,6 +2070,7 @@ void BossFight()
         {
             Console.WriteLine("You have defeated the Goblin!");
             Living = false;
+            score = score + 100;
         }
         while (Living)
         {
@@ -2165,11 +2151,7 @@ void BossFight()
                     TextTyping("5 feet tall");
                     trevorAttack = trevorAttack + 3;
                     Response = Console.ReadLine();
-<<<<<<< HEAD
-                    if (Response == "attck" || Response == "ATTACK" || Response == "Attack")
-=======
                     if (Response == "attack" || Response == "ATTACK" || Response == "Attack")
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
                     {
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
@@ -2180,11 +2162,7 @@ void BossFight()
                         trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-<<<<<<< HEAD
-                    if (Response == "attck" || Response == "ATTACK" || Response == "Attack")
-=======
                     if (Response == "attack" || Response == "ATTACK" || Response == "Attack")
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
                     {
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
@@ -2195,11 +2173,7 @@ void BossFight()
                         trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-<<<<<<< HEAD
-                    if (Response == "attck" || Response == "ATTACK" || Response == "Attack")
-=======
                     if (Response == "attack" || Response == "ATTACK" || Response == "Attack")
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
                     {
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
@@ -2210,11 +2184,7 @@ void BossFight()
                         trevorAttack = trevorAttack + 3;
                     }
                     Response = Console.ReadLine();
-<<<<<<< HEAD
-                    if (Response == "attck" || Response == "ATTACK" || Response == "Attack")
-=======
                     if (Response == "attack" || Response == "ATTACK" || Response == "Attack")
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
                     {
                         TextTyping("Trevor looks at you disappointedly, because he hasn't grown to his full potential, and he swings his sword at you.");
                         SuperSayen = true;
@@ -2279,17 +2249,14 @@ void BossFight()
     }
 }
 
-void DungeonRoom1()
 
-<<<<<<< HEAD
+
 //dungeon!
 bool gobfight1 = false;
 bool gobfight2 = false;
 bool gobfight3 = false;
 bool theSpoon = false;
-void dRoom1()
-=======
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
+void DungeonRoom1()
 {
     if (dunProlouge == true)
     {
@@ -2381,7 +2348,6 @@ void DungeonRoom2()
                     string? soup = Console.ReadLine();
                     if (soup == "y" && theSpoon == true)
                     {
-<<<<<<< HEAD
                         if (gobfight2 == false)
                         {
                             TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
@@ -2392,11 +2358,6 @@ void DungeonRoom2()
                             TextTyping("You approach the pot, the once great smelling stew now smells like dead goblin...");
                             TextTyping("it'd probably be best if you just left it to cook...");
                         }
-=======
-                        TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
-                        //stew goblin
-                        Health = Health + 5;
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
                     }
                     if (soup == "y" && theSpoon != true)
                     {
@@ -2462,7 +2423,6 @@ void Dungeonroom3()
             response = Console.ReadLine();
             if (response == "legos")
             {
-<<<<<<< HEAD
                 if (gobfight3 == false)
                 {
                     TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
@@ -2473,10 +2433,6 @@ void Dungeonroom3()
                 {
                     TextTyping("the legos lay in a pile of broken chunks, the lego eye still seems to be looking at you. creepy");
                 }
-=======
-                TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
-                //goblin fight
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
             }
             if (response == "balls")
             {
@@ -2488,13 +2444,10 @@ void Dungeonroom3()
             }
             if (response == "inventory")
                 Inventory();
-<<<<<<< HEAD
             else
             {
                 TextTyping("invalid response");
             }
-=======
->>>>>>> 3af4cc291255a1f3a38d244b67fadbe5057341ac
         }
     }
 }
