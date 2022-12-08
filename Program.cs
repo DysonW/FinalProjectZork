@@ -2261,6 +2261,7 @@ void DungeonRoom1()
     if (dunProlouge == true)
     {
         TextTyping("you enter the dungeon. The smell of cow corupts the air. the walls and made from stone bricks and are covered with moss.\n the dimmly lit hallway is only barely visible from the door.\n You enter the cow mans dungeon");
+        dunProlouge=false;
     }
     bool ROM1 = true;
     while (ROM1)
@@ -2352,8 +2353,10 @@ void DungeonRoom2()
                         {
                             TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
                             SingleGoblinCombat();
+                            gobfight2=true;
+                            cowTeeth++;
                         }
-                        else if (gobfight2 == false)
+                        else if (gobfight2 == true)
                         {
                             TextTyping("You approach the pot, the once great smelling stew now smells like dead goblin...");
                             TextTyping("it'd probably be best if you just left it to cook...");
@@ -2389,7 +2392,7 @@ void DungeonRoom2()
         {
             Inventory();
         }
-        else
+        else if (response==null)
         {
             TextTyping("invalid response");
         }
@@ -2428,6 +2431,7 @@ void Dungeonroom3()
                     TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
                     SingleGoblinCombat();
                     cowTeeth++;
+                    gobfight3= true;
                 }
                 else if (gobfight3 == true)
                 {
@@ -2444,7 +2448,7 @@ void Dungeonroom3()
             }
             if (response == "inventory")
                 Inventory();
-            else
+            else if (response==null)
             {
                 TextTyping("invalid response");
             }
