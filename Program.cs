@@ -2,7 +2,10 @@
 int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
-
+bool gobfight1 = false;
+bool gobfight2 = false;
+bool gobfight3 = false;
+bool theSpoon = false;
 bool dunProlouge = false;
 bool cowtooth = false;
 (string Name, int Power) bareHands = ("Bare Hands", 1);
@@ -2249,13 +2252,6 @@ void BossFight()
     }
 }
 
-
-
-//dungeon!
-bool gobfight1 = false;
-bool gobfight2 = false;
-bool gobfight3 = false;
-bool theSpoon = false;
 void DungeonRoom1()
 {
     if (dunProlouge == true)
