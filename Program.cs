@@ -1142,6 +1142,9 @@ void GoblinCamp()
                 }
             }
         }
+        if (response == "inventory"){
+            Inventory();
+        }
     }
 }
 
@@ -1199,12 +1202,12 @@ void GoblinCombat()
 
     void PlayerTurn()
     {
-        Console.WriteLine("Player's Turn");
-        Console.WriteLine("What would you like to do?");
+        TextTyping("Player's Turn");
+        TextTyping("What would you like to do?");
         bool Responding = true;
         while (Responding)
         {
-            Console.WriteLine("<attack, run>");
+            TextTyping("<attack, run>");
             string? response = Console.ReadLine();
             if (response == "run")
             {
@@ -1213,7 +1216,7 @@ void GoblinCombat()
             }
             if (response == "attack")
             {
-                Console.WriteLine("Which Goblin would you like to attack?");
+                TextTyping("Which Goblin would you like to attack?");
                 int x;
                 for (x = 0; x < GobLife.Count; x++)
                 {
@@ -1222,8 +1225,9 @@ void GoblinCombat()
                         GobLife.Remove(x);
 
                     else
-                        Console.WriteLine($"Goblin {x + 1}, {GobLife[x]} Life left ");
+                        TextTyping($"Goblin {x + 1}, {GobLife[x]} Life left ");
                 }
+                TextTyping("(Type the Number)");
                 int Y = int.Parse(Console.ReadLine());
                 int GobPicked = Y;
 
@@ -1233,44 +1237,44 @@ void GoblinCombat()
 
                     if (GobPicked <= GobLife.Count && GobPicked >= 0)
                     {
-                        Console.WriteLine("Which type of attack?");
+                        TextTyping("Which type of attack?");
                         bool answering = true;
 
 
                         while (answering == true)
                         {
-                            Console.WriteLine("<heavy, medium, light>");
+                            TextTyping("<heavy, medium, light>");
                             string? answer = Console.ReadLine();
                             if (answer == "heavy")
                             {
-                                Console.WriteLine("You strike the goblin with a heavy attack!!");
+                                TextTyping("You strike the goblin with a heavy attack!!");
                                 speed = speed + 5;
                                 PlayerDamage = Attack + 5;
-                                Console.Write($"{PlayerDamage} Dmg {speed} Spd");
+                                TextTyping($"{PlayerDamage} Dmg {speed} Spd");
                                 answering = false;
                                 Responding = false;
 
                             }
                             if (answer == "light")
                             {
-                                Console.WriteLine("You strike the Goblin with a Light Attack");
+                                TextTyping("You strike the Goblin with a Light Attack");
                                 speed = speed + 1;
                                 PlayerDamage = Attack;
-                                Console.Write($"{PlayerDamage} Dmg {speed} Spd");
+                                TextTyping($"{PlayerDamage} Dmg {speed} Spd");
                                 answering = false;
                             }
                             if (answer == "medium")
                             {
-                                Console.WriteLine("You strike the Goblin with a Medium Attack!");
+                                TextTyping("You strike the Goblin with a Medium Attack!");
                                 speed = speed + 2;
                                 PlayerDamage = Attack + 2;
-                                Console.Write($"{PlayerDamage} Dmg {speed} Spd");
+                                TextTyping($"{PlayerDamage} Dmg {speed} Spd");
                                 answering = false;
                                 Responding = false;
                             }
                             else
                             {
-                                Console.WriteLine("I can't read that.");
+                                TextTyping("I can't read that.");
                             }
 
                         }
@@ -1283,7 +1287,7 @@ void GoblinCombat()
                         }
                         else
                         {
-                            Console.WriteLine("The Goblin shudders from the strength of your blow, but is still standing");
+                            TextTyping("The Goblin shudders from the strength of your blow, but is still standing");
                             Responding = false;
 
                         }
@@ -1309,7 +1313,7 @@ void GoblinCombat()
 
     void GoblinTurn()
     {
-        Console.WriteLine("Goblins Turn");
+        TextTyping("Goblins Turn");
         GobDamage = 0;
         for (int x = 0; x < GobLife.Count; x++)
         {
@@ -1322,35 +1326,35 @@ void GoblinCombat()
                 Random DMG = new Random();
                 int GobDamage1 = DMG.Next(1, 5) + 1;
                 GobDamage = GobDamage1 + GobDamage;
-                Console.WriteLine($"Single Goblin Damage: {GobDamage1}");
-                Console.WriteLine($"Total Damage: {GobDamage}");
+                TextTyping($"Single Goblin Damage: {GobDamage1}");
+                TextTyping($"Total Damage: {GobDamage}");
             }
         }
         GobSpeed = GobSpeed + 3;
         Console.ReadLine();
-        Console.WriteLine($"Goblin Damage {GobDamage}");
+        TextTyping($"Goblin Damage {GobDamage}");
         Console.ReadLine();
         Health = Health - GobDamage;
         Console.WriteLine($"You have {Health} Life left");
         if (Health <= 0)
         {
-            Console.WriteLine("You have Died, Thank you for playiing");
+            TextTyping("You have Died, Thank you for playiing");
             System.Environment.Exit(0);
         }
     }
 
     void Running()
     {
-        Console.WriteLine("You Start running away!! (You Coward)");
+        TextTyping("You Start running away!! (You Coward)");
         if (speed < GobSpeed - 3)
         {
-            Console.WriteLine("You get away safely!!");
-            //System.Environment.Exit(0);
+            TextTyping("You get away safely!!");
+            Clearing6();
 
         }
         else
         {
-            Console.WriteLine("You couldn't get away!!");
+            TextTyping("You couldn't get away!!");
         }
     }
 
@@ -1416,21 +1420,21 @@ void RareSearching()
     Random search = new Random();
     int item = search.Next(0, 50);
     int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore < 9)
+    if (searchScore >= 5 && searchScore < 15)
     {
         Console.WriteLine(searchScore);
         TextTyping("You have found a Life Potion!!!");
         LifePotion++;
     }
-    if (searchScore >= 9)
-    {
-        TextTyping("You have found some history books and you read them to increase your wisdom.");
-        wisdom = wisdom + 2;
-    }
-    if (searchScore == 10)
+    if (searchScore >= 36)
     {
         TextTyping("You found a Super Sword! :)");
         WeaponsInPossession.Add(superSword);
+    }
+    if (searchScore >= 15 && searchScore <= 35)
+    {
+        TextTyping("You have found some history books and you read them to increase your wisdom.");
+        wisdom = wisdom + 2;
     }
 
 
@@ -1453,6 +1457,7 @@ void CursedSearching()
         TextTyping("You have Been Cursed!!!");
         MaxLife = MaxLife - 5;
         TextTyping($"Your max life has been reduced to {MaxLife}");
+        Health = MaxLife;
     }
 
     if (searchScore >= 10)
@@ -1477,7 +1482,7 @@ void Inventory()
     string? response = Console.ReadLine();
     if (response == "yes")
     {
-        Health = 20;
+        Health = MaxLife;
         LifePotion = LifePotion - 1;
         TextTyping($"Health: {Health}\nLife Potions: {LifePotion}");
     }
@@ -1506,6 +1511,7 @@ void Inventory()
     {
         TextTyping($"Attack: {Attack}");
         TextTyping($"Hit Points: {Health}/{MaxLife}");
+        TextTyping($"Wisdom: {wisdom}");
         //TextTyping($"Experience Point: {Experience}/{xpNeeded}");
         TextTyping($"Weapon: {CurrentWeapon.Name}");
         Console.ReadLine();
