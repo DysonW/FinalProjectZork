@@ -1553,6 +1553,9 @@ void SingleGoblinCombat()
     {
         TextTyping("The Goblin is a youth, but healthy, good luck.");
     }
+    if(GoblinLife > 10 && GoblinLife <25){
+        TextTyping("The goblin looks like a gobiln warrior, and this could be quite the fight.");
+    }
     if (GoblinLife == 25)
     {
         TextTyping("Oh NO!!! You have encountered a Goblin Cheif, he is 7 feet tall 300 pounds of solid muscle, with his moms skull around his neck and wears nothing but a loin cloth\nNot only this, but his stench can knock out a Dragon.");
