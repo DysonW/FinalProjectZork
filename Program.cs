@@ -2,7 +2,10 @@
 int Health = 50;
 bool dungeonKey = false;
 bool searchDungChest = true;
-
+bool gobfight1 = false;
+bool gobfight2 = false;
+bool gobfight3 = false;
+bool theSpoon = false;
 bool dunProlouge = false;
 bool cowtooth = false;
 (string Name, int Power) bareHands = ("Bare Hands", 1);
@@ -21,12 +24,10 @@ WeaponsInPossession.Add(bareHands);
 int wisdom = 1;
 int LifePotion = 0;
 int Attack = CurrentWeapon.Power + level;
-
+int score = 0;
 int cowTeeth = 0;
-int Coins = 0;
 bool searchGobChest = true;
 int MaxLife = 50;
-int Experience = 0;
 int xpNeeded = 0;
 xpNeeded = xpNeeded + (100 * level);
 
@@ -568,7 +569,7 @@ void BarrenClearing()
             {
 
                 TextTyping("<NOTHING, nothing, rock>");
-                string search = Console.ReadLine();
+                string? search = Console.ReadLine();
 
                 if (search == "NOTHING")
                 {
@@ -1069,7 +1070,7 @@ void GoblinClearing()
         {
             TextTyping("You head over to the Goblin Camp, weapon drawn.");
             inGobClear = false;
-            GoblinCamp();
+            GoblinCombat();
         }
 
         if (response == "inventory")
@@ -1085,7 +1086,6 @@ void GoblinClearing()
 
 void GoblinCamp()
 {
-    GoblinCombat();
     TextTyping("You have defeated all of the goblins!!");
     TextTyping("You took care of the goblins milling around, but the rest must be on a hunting trip.");
     Console.ReadKey();
@@ -1153,7 +1153,6 @@ void GoblinCombat()
     int PlayerDamage = 0;
     int Victory = 0;
     bool Living = true;
-
     List<int> GobLife = new List<int>();
     Random Number = new Random();
     int NumMonster = Number.Next(1, 6);
@@ -1174,25 +1173,25 @@ void GoblinCombat()
         {
             Console.WriteLine("You have defeated all of the goblins, Congratulations!");
             Living = false;
+            score = score + (10 * NumMonster);
+            GoblinCamp();
+
         }
         while (Living)
         {
             if (speed < GobSpeed)
             {
                 PlayerTurn();
-                GoblinTurn();
                 Rounds();
             }
             if (speed > GobSpeed)
             {
                 GoblinTurn();
-                PlayerTurn();
                 Rounds();
             }
             else
             {
                 PlayerTurn();
-                GoblinTurn();
                 Rounds();
             }
         }
@@ -1417,13 +1416,17 @@ void RareSearching()
     Random search = new Random();
     int item = search.Next(0, 50);
     int searchScore = item + wisdom;
-    if (searchScore >= 5 && searchScore <= 9)
+    if (searchScore >= 5 && searchScore < 9)
     {
         Console.WriteLine(searchScore);
         TextTyping("You have found a Life Potion!!!");
         LifePotion++;
     }
-
+    if (searchScore >= 9)
+    {
+        TextTyping("You have found some history books and you read them to increase your wisdom.");
+        wisdom = wisdom + 2;
+    }
     if (searchScore == 10)
     {
         TextTyping("You found a Super Sword! :)");
@@ -1452,7 +1455,7 @@ void CursedSearching()
         TextTyping($"Your max life has been reduced to {MaxLife}");
     }
 
-    if (searchScore == 10)
+    if (searchScore >= 10)
     {
         TextTyping("You found The Cursed Sword! :)");
         WeaponsInPossession.Add(cursedSword);
@@ -1554,30 +1557,23 @@ void SingleGoblinCombat()
 
     void Rounds()
     {
-        if (GoblinLife <= 0)
-        {
-            Living = false;
-            Console.WriteLine("You have defeated the Goblin!");
-        }
+
         while (Living)
         {
 
             if (speed < GobSpeed)
             {
                 PlayerTurn();
-                GoblinTurn();
                 Rounds();
             }
             if (speed > GobSpeed)
             {
                 GoblinTurn();
-                PlayerTurn();
                 Rounds();
             }
             else
             {
                 PlayerTurn();
-                GoblinTurn();
                 Rounds();
             }
         }
@@ -1628,6 +1624,12 @@ void SingleGoblinCombat()
                     }
                 }
                 GoblinLife = GoblinLife - PlayerDMG;
+                if (GoblinLife <= 0)
+                {
+                    Living = false;
+                    Console.WriteLine("You have defeated the Goblin!");
+                    score = score + 10;
+                }
 
             }
             if (response == "2")
@@ -1655,7 +1657,7 @@ void SingleGoblinCombat()
         Random GobDmg = new Random();
         int GobAttck = GobDmg.Next(1, 5) + goblinAttk;
         Random Hit = new Random();
-        int Success = Hit.Next(1, 2);
+        int Success = Hit.Next(1, 5);
         if (Success == 1)
             TextTyping("The Goblin Missed you");
         else
@@ -1953,6 +1955,8 @@ void WinGame()
     TextTyping("It's all over now. Everthing is peaceful, when suddenly your best friend bursts into your house and tells you his wife has gone missing!! There's a sinking feeling in your gut, but it couldn't be. To ease the feeling you go and check the dungeon to make sure. Your worst dream has come true, you must not have finished Trevor off, because as you enter the throne room his body is nowhere to be found...");
     TextTyping("         G  A  M  E");
     TextTyping("         O  V  E  R");
+    TextTyping($"Your final Score was: {score}");
+    Console.ReadKey();
     System.Environment.Exit(0);
 }
 
@@ -2009,11 +2013,11 @@ void gobGob()
         TextTyping("you reach out to touch the rock, you are suprised to see that the rock... touched you first");
     }
     TextTyping("HI. ME AM ARE GOB GOB. WELCOM TO MY CLERING.");
-    TextTyping("WOULD YOU LIK A LARD?/n (he holds out a bucket of lard, you politly push it back)");
+    TextTyping("WOULD YOU LIK A LARD?\n (he holds out a bucket of lard, you politly push it back)");
     bool gobtalk = true;
     while (gobtalk)
     {
-        Console.WriteLine("(1) What are you?/n(2) Have you seen my wife?/n(3) why lard?/n(4) Gud buy??");
+        Console.WriteLine("(1) What are you?\n(2) Have you seen my wife?\n(3) why lard?\n(4) Gud buy??");
         int respond = int.Parse(Console.ReadLine());
         switch (respond)
         {
@@ -2025,19 +2029,15 @@ void gobGob()
                 break;
             case 3:
                 TextTyping(@"Lard has always been an important cooking and baking staple in cultures where pork is an important dietary item, with pig fat often being as valuable a product as pork.[6]
-
     During the 19th century, lard was used similarly to butter in North America and many European nations.[7] Lard remained about as popular as butter in the early 20th century and was widely used as a substitute for butter during World War II. As a readily available by-product of modern pork production, lard had been cheaper than most vegetable oils, and it was common in many people's diet until the industrial revolution made vegetable oils more common and more affordable. Vegetable shortenings were developed in the early 1900s, which made it possible to use vegetable-based fats in baking and in other uses where solid fats were called for. Upton Sinclair's novel The Jungle, though fictional, portrayed men falling into rendering vats and being sold as lard, and it generated negative publicity.
-
 By the late 20th century lard began to be considered less healthy than vegetable oils (such as olive and sunflower oil) because of its high content of saturated fatty acids and cholesterol. However, despite its reputation, lard has less saturated fat, more unsaturated fat and less cholesterol than an equal amount of butter by weight.[2] Unhydrogenated lard contains no transfats. It has also been regarded as a 'poverty food'.[6]
-
 Many restaurants in the western nations have eliminated the use of lard in their kitchens because of the health-related dietary restrictions of many of their customers,[citation needed] and religious pork-based dietary restrictions such as Kashrut and Halal mean that some bakers substitute beef tallow for lard.[citation needed]
-
 In the 1990s and early 2000s, however, chefs and bakers rediscovered lard's unique culinary values, leading to a partial rehabilitation of this fat among 'foodies'. Negative publicity about the transfat content of the partially hydrogenated vegetable oils in vegetable shortening has partially driven this trend. Chef and food writer Rick Bayless is a prominent proponent of the virtues of lard for certain types of cooking.[8][9][10][11]
-
 It is also again becoming popular in the United Kingdom among aficionados of traditional British cuisine. This led to a 'lard crisis' in late 2004.[12][13]");
                 break;
             case 4:
                 TextTyping("*munch* by");
+                gobtalk = false;
                 break;
             default:
                 TextTyping("*BELCH*");
@@ -2065,30 +2065,23 @@ void BossFight()
 
     void Rounds()
     {
-        if (trevorHealth <= 0)
-        {
-            Console.WriteLine("You have defeated the Goblin!");
-            Living = false;
-        }
+
         while (Living)
         {
 
             if (PlayerSpeed < trevorSpeed)
             {
                 PlayerTurn();
-                TrevorTurn();
                 Rounds();
             }
             if (PlayerSpeed > trevorSpeed)
             {
                 TrevorTurn();
-                PlayerTurn();
                 Rounds();
             }
             else
             {
                 PlayerTurn();
-                TrevorTurn();
                 Rounds();
             }
         }
@@ -2139,6 +2132,12 @@ void BossFight()
                     }
                 }
                 trevorHealth = trevorHealth - PlayerDMG;
+                if (trevorHealth <= 0)
+                {
+                    Console.WriteLine("You have defeated the Goblin!");
+                    Living = false;
+                    score = score + 100;
+                }
                 //Phase 2 of Boss Fight
                 if (trevorHealth <= 50 && SuperSayen == false)
                 {
@@ -2243,28 +2242,26 @@ void BossFight()
         }
         TextTyping($"You have {Health} Left");
         trevorSpeed = trevorSpeed + 5;
-
     }
 }
 
-
 void DungeonRoom1()
-
 {
     if (dunProlouge == true)
     {
         TextTyping("you enter the dungeon. The smell of cow corupts the air. the walls and made from stone bricks and are covered with moss.\n the dimmly lit hallway is only barely visible from the door.\n You enter the cow mans dungeon");
+        dunProlouge = false;
     }
     bool ROM1 = true;
     while (ROM1)
     {
         TextTyping("You enter the First room, there isnt much to see in here. you see a path to the south and a east.");
         TextTyping("What would you like to do ?\n <South, East, Search, Inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "south")
         {
             ROM1 = false;
-            //DungeonRoom4
+            DungeonRoom4();
         }
         if (response == "east")
         {
@@ -2273,15 +2270,28 @@ void DungeonRoom1()
             DungeonRoom2();
         }
         if (response == "search")
+
         {
             TextTyping("You desperatly look around the room for something to search.\nAll you find is an empty pile of bones");
-            TextTyping("Suddenly the pile of bones started started rattling.\nA brave goblin cultist leaps from the pile, daggar out and ready to kill! ");
-            //insert goblin here 
-            // add a tooph
+            if (gobfight1 == false)
+            {
+                TextTyping("Suddenly the pile of bones started started rattling.\nA brave goblin cultist leaps from the pile, daggar out and ready to kill! ");
+                SingleGoblinCombat();
+                cowTeeth++;
+                gobfight1 = true;
+            }
+            else if (gobfight1 == true)
+            {
+                TextTyping("You see a dead goblin on the pile of bones...");
+            }
         }
         if (response == "inventory")
         {
             Inventory();
+        }
+        else
+        {
+            TextTyping("invalid response");
         }
 
     }
@@ -2295,7 +2305,7 @@ void DungeonRoom2()
     while (ROM2)
     {
         TextTyping("What would you like to do?\n <East, West, South, Seach, Inventory>");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "east")
         {
             TextTyping("You enter the room to the east");
@@ -2312,12 +2322,11 @@ void DungeonRoom2()
         {
             TextTyping("You enter the room to the south.");
             ROM2 = false;
-            //Room 5
+            DungeonRoom5();
         }
         if (response == "search")
         {
             bool searching = true;
-            bool theSpoon = false;
             TextTyping("You look around the room, you see a pot of stew, a suspicious pile of dirt, and a spoon");
             while (searching)
             {
@@ -2326,12 +2335,21 @@ void DungeonRoom2()
                 if (response == "stew")
                 {
                     TextTyping("You approach the stew, it smells good! Would you like to have some stew?\n<Y or N>");
-                    string soup = Console.ReadLine();
+                    string? soup = Console.ReadLine();
                     if (soup == "y" && theSpoon == true)
                     {
-                        TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
-                        //stew goblin
-                        Health = Health + 5;
+                        if (gobfight2 == false)
+                        {
+                            TextTyping("You grab the spoon and get some stew, but the spoon is grabbed out of you hand. A Goblin pops out of the pot ready to fight!");
+                            SingleGoblinCombat();
+                            gobfight2 = true;
+                            cowTeeth++;
+                        }
+                        else if (gobfight2 == true)
+                        {
+                            TextTyping("You approach the pot, the once great smelling stew now smells like dead goblin...");
+                            TextTyping("it'd probably be best if you just left it to cook...");
+                        }
                     }
                     if (soup == "y" && theSpoon != true)
                     {
@@ -2363,6 +2381,10 @@ void DungeonRoom2()
         {
             Inventory();
         }
+        else if (response == null)
+        {
+            TextTyping("invalid response");
+        }
     }
 }
 
@@ -2374,7 +2396,7 @@ void Dungeonroom3()
     while (rom3)
     {
         TextTyping("what would you like to do?\n<east, south, search, invertory");
-        string response = Console.ReadLine();
+        string? response = Console.ReadLine();
         if (response == "east")
         {
             TextTyping("You enter the room to the east");
@@ -2385,7 +2407,7 @@ void Dungeonroom3()
         {
             TextTyping("You enter the room to the south");
             rom3 = false;
-            //DungeonRoom6();
+            DungeonRoom6();
         }
         if (response == "search")
         {
@@ -2393,8 +2415,17 @@ void Dungeonroom3()
             response = Console.ReadLine();
             if (response == "legos")
             {
-                TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
-                //goblin fight
+                if (gobfight3 == false)
+                {
+                    TextTyping("You walk to the pile of legos, when suddenly the legos build themselves into a goblin!");
+                    SingleGoblinCombat();
+                    cowTeeth++;
+                    gobfight3 = true;
+                }
+                else if (gobfight3 == true)
+                {
+                    TextTyping("the legos lay in a pile of broken chunks, the lego eye still seems to be looking at you. creepy");
+                }
             }
             if (response == "balls")
             {
@@ -2406,6 +2437,10 @@ void Dungeonroom3()
             }
             if (response == "inventory")
                 Inventory();
+            else if (response == null)
+            {
+                TextTyping("invalid response");
+            }
         }
     }
 }
