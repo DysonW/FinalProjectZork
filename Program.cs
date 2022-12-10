@@ -450,7 +450,7 @@ void Clearing1()
         }
     }
 }
-//Best Clearing
+
 void SusClearing()
 {
     TextTyping("As you enter this clearing, you you notice it looks awfully suspicious.");
@@ -1627,7 +1627,7 @@ void SingleGoblinCombat()
                         speed = speed + 8;
                         TextTyping($"You hit the Goblin with a heavy attack dealing {PlayerDMG} Damage");
                     }
-                    else
+                    else if (response==null)
                     {
                         TextTyping("I can't read that");
                     }
@@ -2063,7 +2063,6 @@ void BossFight()
     int trevorAttack = 10;
     int PlayerSpeed = 0;
     int trevorSpeed = 0;
-    Attack = 15;
     bool Living = true;
     bool SuperSayen = false;
     TextTyping("You square up to Trevor the Cow Man, facing him with a fierce determination to get your wife back, willing to do anything.");
@@ -2455,5 +2454,5 @@ void Dungeonroom3()
 }
 
 Console.Clear();
-TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife has been stolen!!!!\nYou must rescue her from the Evil Cow Man!!!!");
+TextTyping("Welcome to the Land of Spud!!\nYour Name is Jimbo, and your wife, Clarabell has been stolen!!!!\nYou must rescue her from the Trevor Evil Cow Man!!!!");
 House();
